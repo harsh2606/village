@@ -20,7 +20,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            >
 
 
             <include
@@ -36,16 +37,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_150sdp"
                 android:orientation="vertical">
+
         <com.synnapps.carouselview.CarouselView
             android:id="@+id/carouselView"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_200sdp"
-            app:fillColor="#FFFFFFFF"
-            app:pageColor="#00000000"
+            app:fillColor="#FFDD1010"
+            app:pageColor="#FFDD1010"
             app:radius="6dp"
             app:slideInterval="3000"
             app:strokeColor="#FF777777"
@@ -67,13 +70,14 @@
                     android:layout_marginEnd="@dimen/_25sdp"
                     android:orientation="vertical">
 
+
                     <androidx.cardview.widget.CardView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/_5sdp"
                         app:cardCornerRadius="@dimen/_15sdp"
-                        app:cardElevation="@dimen/_5sdp">
-
+                        app:cardElevation="@dimen/_5sdp"
+                       android:layout_margin="@dimen/_5sdp"
+                       android:backgroundTint="@color/backlight">
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:layout_width="@dimen/_90sdp"
@@ -109,7 +113,8 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/_5sdp"
                         app:cardCornerRadius="@dimen/_15sdp"
-                        app:cardElevation="@dimen/_5sdp">
+                        app:cardElevation="@dimen/_5sdp"
+                        android:backgroundTint="@color/backlight">
 
 
                         <androidx.appcompat.widget.AppCompatImageView
@@ -155,7 +160,8 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/_5sdp"
                         app:cardCornerRadius="@dimen/_15sdp"
-                        app:cardElevation="@dimen/_5sdp">
+                        app:cardElevation="@dimen/_5sdp"
+                        android:backgroundTint="@color/backlight">
 
 
                         <androidx.appcompat.widget.AppCompatImageView
@@ -192,7 +198,8 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/_5sdp"
                         app:cardCornerRadius="@dimen/_15sdp"
-                        app:cardElevation="@dimen/_5sdp">
+                        app:cardElevation="@dimen/_5sdp"
+                        android:backgroundTint="@color/backlight">
 
 
                         <androidx.appcompat.widget.AppCompatImageView
