@@ -3,12 +3,9 @@ package com.temp.ui.home.viewmodel
 
 import android.app.*
 import android.content.Context
-import android.net.Uri
+import android.content.Intent
 import android.view.View
 import android.widget.ImageView
-import com.google.firebase.storage.UploadTask
-import com.synnapps.carouselview.CarouselView
-import com.synnapps.carouselview.ImageClickListener
 import com.synnapps.carouselview.ImageListener
 import com.temp.R
 import com.temp.apputils.Debug
@@ -17,8 +14,8 @@ import com.temp.apputils.Utils
 import com.temp.base.viewmodel.BaseViewModel
 import com.temp.databinding.ActivityHomeBinding
 import com.temp.interfaces.TopBarClickListener
-import com.temp.ui.MyApplication
 import com.temp.ui.home.datamodel.Gallery
+import com.temp.ui.villagelist.view.VillageListActivity
 
 class HomeViewModel(application: Application) : BaseViewModel(application) {
 
@@ -110,7 +107,16 @@ var sampleImages = intArrayOf(
 
 
     inner class ViewClickHandler {
+        fun onUser(view: View) {
+            try {
 
+                var intent = Intent(mContext, VillageListActivity::class.java)
+                mContext.startActivity(intent)
+
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
 
         fun onSearch(view: View) {
             try {
