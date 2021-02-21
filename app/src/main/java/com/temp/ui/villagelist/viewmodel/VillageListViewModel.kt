@@ -35,15 +35,7 @@ class VillageListViewModel(application: Application) : BaseViewModel(application
     }
 
     private fun init() {
-//        adapter = SurnameAdapter(mContext)
-//        binder.rvSurname.adapter = adapter
-//        adapter.setEventListener(object : SurnameAdapter.EventListener {
-//            override fun onItemClick(pos: Int, item: SurnameData) {
-//                var intent = Intent(mContext, SurnameContactsActivity::class.java)
-//                intent.putExtra("surname",item)
-//                mContext.startActivity(intent)
-//            }
-//        })
+
         getVillageList()
     }
 

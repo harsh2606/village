@@ -81,7 +81,7 @@
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/white"
+        android:background="@color/bg_gray"
         android:theme="@style/AppTheme.AppBarOverlay"
         app:elevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
