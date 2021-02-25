@@ -22,6 +22,9 @@ class VillageListViewModel(application: Application) : BaseViewModel(application
     private lateinit var mContext: Context
     lateinit var villageListAdepter: VillageListAdepter
 
+    lateinit var  VillageListViewModel: VilllageListData
+
+
 
     fun setBinder(binder: ActivityVillageListBinding) {
         this.binder = binder
@@ -31,6 +34,7 @@ class VillageListViewModel(application: Application) : BaseViewModel(application
         binder.topBar.isTextShow = true
         binder.topBar.isBackShow = true
         binder.topBar.topBarClickListener = SlideMenuClickListener()
+        VillageListViewModel = VilllageListData()
         init()
     }
 
@@ -51,7 +55,9 @@ class VillageListViewModel(application: Application) : BaseViewModel(application
             query.get().addOnSuccessListener { result ->
                 if (result != null && result.isEmpty.not()) {
                     val item = result.toObjects(VilllageListData::class.java)
+                    villageListAdepter = VillageListAdepter(mContext)
                     villageListAdepter.addAll(item)
+                    binder.rvVillageList.adapter = villageListAdepter
                     Debug.e("Get All Data Successfully")
                 }
                 dismissDialog()
@@ -83,6 +89,7 @@ class VillageListViewModel(application: Application) : BaseViewModel(application
         }
 
         override fun onBackClicked(view: View?) {
+            (mContext as Activity).finish()
         }
     }
 
