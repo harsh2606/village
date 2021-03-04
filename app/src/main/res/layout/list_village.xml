@@ -7,9 +7,8 @@
     android:layout_height="wrap_content"
     app:cardCornerRadius="@dimen/_8sdp"
     app:cardElevation="@dimen/_5sdp"
-    android:layout_margin="@dimen/_15sdp"
-    android:background="@color/bg_gray"
-    android:backgroundTint="@color/bg_gray">
+    android:layout_margin="@dimen/_12sdp"
+    >
 
   <com.temp.custom.CTextViewB
       android:id="@+id/tvVillage"

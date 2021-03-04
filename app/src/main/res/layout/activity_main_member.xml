@@ -7,30 +7,30 @@
 
         <variable
             name="viewClickHandler"
-            type="com.temp.ui.villagelist.viewmodel.VillageListViewModel.ViewClickHandler" />
+            type="com.temp.ui.mainmember.viewmodel.MainMemberViewModel.ViewClickHandler" />
 
         <variable
             name="viewModel"
-            type="com.temp.ui.villagelist.viewmodel.VillageListViewModel" />
+            type="com.temp.ui.mainmember.viewmodel.MainMemberViewModel" />
     </data>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".ui.villagelist.view.VillageListActivity"
+        tools:context=".ui.mainmember.view.MainMemberActivity"
         android:background="@color/gray_61">
 
         <include
-            android:id="@+id/topBar"
+            android:id="@+id/topbar"
             layout="@layout/topbar" />
 
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvVillageList"
+            android:id="@+id/rvMainMemberList"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:visibility="visible"
-            tools:listitem="@layout/list_village"
+            tools:listitem="@layout/list_mainmember"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
     </LinearLayout>
