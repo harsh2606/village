@@ -27,7 +27,7 @@
             android:id="@+id/tvNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Main Name"
+            android:text="Number"
             android:padding="@dimen/_8sdp"
             android:gravity="center_horizontal"
             android:layout_gravity="center"/>

@@ -2,7 +2,10 @@ package com.temp.ui.mainmember.viewmodel
 
 import android.app.Activity
 import android.app.Application
+import android.content.ContentValues.TAG
 import android.content.Context
+import android.content.Intent
+import android.util.Log
 import android.view.View
 import com.temp.R
 import com.temp.apputils.Debug
@@ -14,6 +17,7 @@ import com.temp.databinding.ActivityVillageListBinding
 import com.temp.interfaces.TopBarClickListener
 import com.temp.ui.mainmember.datamodel.MainMemberData
 import com.temp.ui.mainmember.utilis.MainMemberAdepter
+import com.temp.ui.mainmember.view.MainMemberActivity
 import com.temp.ui.villagelist.datamodel.VilllageListData
 import com.temp.ui.villagelist.utilis.VillageListAdepter
 
@@ -23,7 +27,7 @@ class MainMemberViewModel (application: Application) : BaseViewModel(application
     private lateinit var mContext: Context
     lateinit var mainMemberAdepter: MainMemberAdepter
     lateinit var  mainMemberData: MainMemberData
-
+    var id: VilllageListData? = null
 
 
     fun setBinder(binder: ActivityMainMemberBinding) {
@@ -39,6 +43,7 @@ class MainMemberViewModel (application: Application) : BaseViewModel(application
     }
 
     private fun init() {
+        id = (mContext as Activity).intent.extras?.getSerializable("id") as VilllageListData
 
         getMainMember()
     }
@@ -48,16 +53,23 @@ class MainMemberViewModel (application: Application) : BaseViewModel(application
 
 //            var query = db.collection(FirestoreTable.CHAT)
 //                .whereEqualTo(RequestParamsUtils.SENDER_ID, loggedInUserId)
+            Debug.e("villageID",id?.id)
             showDialog("",mContext as Activity)
-            var query = db!!.collection(FirestoreTable.MainMember)
+            var query = db!!.collection(FirestoreTable.MainMember).whereEqualTo("villageid",id?.id)
 
 
             query.get().addOnSuccessListener { result ->
+
                 if (result != null && result.isEmpty.not()) {
                     val item = result.toObjects(MainMemberData::class.java)
                    mainMemberAdepter = MainMemberAdepter(mContext)
                     mainMemberAdepter.addAll(item)
                     binder.rvMainMemberList.adapter =  mainMemberAdepter
+                    mainMemberAdepter.setEventListener(object : MainMemberAdepter.EventListener {
+
+                        override fun onItemClick(pos: Int, item: MainMemberData) {
+                        }
+                    })
                     Debug.e("Get All Data Successfully")
                 }
                 dismissDialog()
@@ -95,24 +107,6 @@ class MainMemberViewModel (application: Application) : BaseViewModel(application
 
 
     inner class ViewClickHandler {
-        fun onReviewsAndRanks(view: View) {
-            try {
-//                var intent = Intent(mContext, ReviewsAndRankActivity::class.java)
-//                mContext.startActivity(intent)
-//                (mContext as Activity).finish()
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-        }
 
-        fun onSeeAll(view: View) {
-            try {
-//                var intent = Intent(mContext, ReviewsAndRankActivity::class.java)
-//                mContext.startActivity(intent)
-//                (mContext as Activity).finish()
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-        }
     }
 }

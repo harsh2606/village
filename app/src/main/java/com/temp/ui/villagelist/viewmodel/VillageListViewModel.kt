@@ -13,6 +13,7 @@ import com.temp.apputils.Utils
 import com.temp.base.viewmodel.BaseViewModel
 import com.temp.databinding.ActivityVillageListBinding
 import com.temp.interfaces.TopBarClickListener
+import com.temp.ui.mainmember.view.MainMemberActivity
 import com.temp.ui.villagelist.datamodel.VilllageListData
 import com.temp.ui.villagelist.utilis.VillageListAdepter
 
@@ -21,8 +22,7 @@ class VillageListViewModel(application: Application) : BaseViewModel(application
     private lateinit var binder: ActivityVillageListBinding
     private lateinit var mContext: Context
     lateinit var villageListAdepter: VillageListAdepter
-
-    lateinit var  VillageListViewModel: VilllageListData
+    lateinit var  villageListData: VilllageListData
 
 
 
@@ -34,12 +34,22 @@ class VillageListViewModel(application: Application) : BaseViewModel(application
         this.binder.topBar.topBarClickListener = SlideMenuClickListener()
         this.binder.topBar.isTextShow = true
         this.binder.topBar.isBackShow = true
-        VillageListViewModel = VilllageListData()
+        villageListData = VilllageListData()
         init()
     }
 
     private fun init() {
 
+        villageListAdepter = VillageListAdepter(mContext)
+        binder.rvVillageList.adapter = villageListAdepter
+        villageListAdepter.setEventListener(object : VillageListAdepter.EventListener {
+            override fun onItemClick(pos: Int, item: VilllageListData) {
+                var intent = Intent(mContext, MainMemberActivity::class.java)
+                intent.putExtra("id",item)
+                mContext.startActivity(intent)
+
+            }
+        })
         getVillageList()
     }
 
@@ -55,10 +65,8 @@ class VillageListViewModel(application: Application) : BaseViewModel(application
             query.get().addOnSuccessListener { result ->
                 if (result != null && result.isEmpty.not()) {
                     val item = result.toObjects(VilllageListData::class.java)
-                    villageListAdepter = VillageListAdepter(mContext)
                     villageListAdepter.addAll(item)
-                    binder.rvVillageList.adapter = villageListAdepter
-                    Debug.e("Get All Data Successfully")
+                    Debug.e("Village List Data Successfully")
                 }
                 dismissDialog()
             }.addOnFailureListener {
