@@ -4,6 +4,8 @@ import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.content.Intent
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import com.google.firebase.firestore.Query
 import com.temp.R
@@ -23,6 +25,7 @@ class VillageListViewModel(application: Application) : BaseViewModel(application
     private lateinit var mContext: Context
     lateinit var villageListAdepter: VillageListAdepter
     lateinit var  villageListData: VilllageListData
+    val villageList: MutableList<VilllageListData> = ArrayList()
 
 
 
@@ -50,21 +53,51 @@ class VillageListViewModel(application: Application) : BaseViewModel(application
 
             }
         })
+
+        binder.edtSearch.addTextChangedListener(object : TextWatcher {
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+            }
+
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+            }
+
+            override fun afterTextChanged(s: Editable) {
+
+                // filter your list from your input
+                if (villageList.isNotEmpty()) {
+                    filter(s.toString())
+                }
+                //you can use runnable postDelayed like 500 ms to delay search text
+            }
+        })
+
         getVillageList()
     }
-
+    fun filter(text: String?) {
+        val temp: MutableList<VilllageListData> = ArrayList()
+        for (d in villageList) {
+            //or use .equal(text) with you want equal match
+            //use .toLowerCase() for better matches
+            if (text?.toLowerCase()?.let { d.Village!!.contains(it) } == true) {
+                temp.add(d)
+            }
+        }
+        //update recyclerview
+        villageListAdepter.addAll(temp)
+    }
     private fun getVillageList() {
         try {
 
 //            var query = db.collection(FirestoreTable.CHAT)
 //                .whereEqualTo(RequestParamsUtils.SENDER_ID, loggedInUserId)
             showDialog("",mContext as Activity)
-            var query = db!!.collection(FirestoreTable.VillageList)
+            var query = db!!.collection(FirestoreTable.VillageList).orderBy("Village")
 
 
             query.get().addOnSuccessListener { result ->
                 if (result != null && result.isEmpty.not()) {
                     val item = result.toObjects(VilllageListData::class.java)
+                    villageList.addAll(item)
                     villageListAdepter.addAll(item)
                     Debug.e("Village List Data Successfully")
                 }
