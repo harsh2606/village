@@ -5,6 +5,8 @@ import android.app.Application
 import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import com.temp.R
@@ -28,6 +30,7 @@ class MainMemberViewModel (application: Application) : BaseViewModel(application
     lateinit var mainMemberAdepter: MainMemberAdepter
     lateinit var  mainMemberData: MainMemberData
     var id: VilllageListData? = null
+    val mainMemberList: MutableList<MainMemberData> = ArrayList()
 
 
     fun setBinder(binder: ActivityMainMemberBinding) {
@@ -45,7 +48,37 @@ class MainMemberViewModel (application: Application) : BaseViewModel(application
     private fun init() {
         id = (mContext as Activity).intent.extras?.getSerializable("id") as VilllageListData
 
+        binder.edtSearch.addTextChangedListener(object : TextWatcher {
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+            }
+
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+            }
+
+            override fun afterTextChanged(s: Editable) {
+
+                // filter your list from your input
+                if (mainMemberList.isNotEmpty()) {
+                    filter(s.toString())
+                }
+                //you can use runnable postDelayed like 500 ms to delay search text
+            }
+        })
+
         getMainMember()
+    }
+
+    fun filter(text: String?) {
+        val temp: MutableList<MainMemberData> = ArrayList()
+        for (d in mainMemberList) {
+            //or use .equal(text) with you want equal match
+            //use .toLowerCase() for better matches
+            if (text?.toLowerCase()?.let { d.Name!!.contains(it) } == true) {
+                temp.add(d)
+            }
+        }
+        //update recyclerview
+        mainMemberAdepter.addAll(temp)
     }
 
     private fun getMainMember() {
@@ -63,6 +96,7 @@ class MainMemberViewModel (application: Application) : BaseViewModel(application
                 if (result != null && result.isEmpty.not()) {
                     val item = result.toObjects(MainMemberData::class.java)
                    mainMemberAdepter = MainMemberAdepter(mContext)
+                    mainMemberList.addAll(item)
                     mainMemberAdepter.addAll(item)
                     binder.rvMainMemberList.adapter =  mainMemberAdepter
                     mainMemberAdepter.setEventListener(object : MainMemberAdepter.EventListener {
