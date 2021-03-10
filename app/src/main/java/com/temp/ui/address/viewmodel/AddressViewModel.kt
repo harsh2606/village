@@ -25,7 +25,7 @@ class AddressViewModel (application: Application) : BaseViewModel(application) {
     private lateinit var mContext: Context
     lateinit var addressAdepter: AddressAdepter
     lateinit var  addressData: AddressData
-    var id: VilllageListData? = null
+    var id: MainMemberData? = null
     val mainMemberList: MutableList<MainMemberData> = ArrayList()
 
 
@@ -42,7 +42,7 @@ class AddressViewModel (application: Application) : BaseViewModel(application) {
     }
 
     private fun init() {
-        id = (mContext as Activity).intent.extras?.getSerializable("id") as VilllageListData
+        id = (mContext as Activity).intent.extras?.getSerializable("id") as MainMemberData
 
 
 

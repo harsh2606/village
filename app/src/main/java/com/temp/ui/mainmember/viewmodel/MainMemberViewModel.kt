@@ -17,6 +17,7 @@ import com.temp.base.viewmodel.BaseViewModel
 import com.temp.databinding.ActivityMainMemberBinding
 import com.temp.databinding.ActivityVillageListBinding
 import com.temp.interfaces.TopBarClickListener
+import com.temp.ui.address.view.AdressActivity
 import com.temp.ui.mainmember.datamodel.MainMemberData
 import com.temp.ui.mainmember.utilis.MainMemberAdepter
 import com.temp.ui.mainmember.view.MainMemberActivity
@@ -48,6 +49,17 @@ class MainMemberViewModel (application: Application) : BaseViewModel(application
     private fun init() {
 
         id = (mContext as Activity).intent.extras?.getSerializable("id") as VilllageListData
+
+        mainMemberAdepter = MainMemberAdepter(mContext)
+        binder.rvMainMemberList.adapter = mainMemberAdepter
+        mainMemberAdepter.setEventListener(object : MainMemberAdepter.EventListener {
+            override fun onItemClick(pos: Int, item: MainMemberData) {
+                var intent = Intent(mContext, AdressActivity::class.java)
+                intent.putExtra("id",item)
+                mContext.startActivity(intent)
+
+            }
+        })
 
         binder.edtSearch.addTextChangedListener(object : TextWatcher {
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
