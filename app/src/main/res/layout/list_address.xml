@@ -35,6 +35,7 @@
             android:layout_marginBottom="@dimen/_3sdp"/>
 
                 <com.temp.custom.CTextViewB
+                    android:id="@+id/tvRName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="name"
@@ -58,6 +59,7 @@
                     android:layout_marginBottom="@dimen/_3sdp"/>
 
                 <com.temp.custom.CTextViewB
+                    android:id="@+id/tvBusiness"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Job"
@@ -81,6 +83,7 @@
                     android:layout_marginBottom="@dimen/_3sdp"/>
 
                 <com.temp.custom.CTextViewB
+                    android:id="@+id/tvDob"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="22/05/1995"
@@ -104,6 +107,7 @@
                     android:layout_marginBottom="@dimen/_3sdp"/>
 
                 <com.temp.custom.CTextViewB
+                    android:id="@+id/tvStudy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="12"
@@ -127,6 +131,7 @@
                     android:layout_marginBottom="@dimen/_3sdp"/>
 
                 <com.temp.custom.CTextViewB
+                    android:id="@+id/tvNumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="VillageList"

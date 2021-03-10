@@ -6,7 +6,9 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.temp.R
+import com.temp.databinding.ListAddressBinding
 import com.temp.databinding.ListMainmemberBinding
+import com.temp.ui.address.datamodel.AddressData
 import com.temp.ui.mainmember.datamodel.MainMemberData
 import com.temp.ui.mainmember.utilis.MainMemberAdepter
 
@@ -14,7 +16,7 @@ class AddressAdepter ()  : RecyclerView.Adapter<AddressAdepter.MyViewHolder>() {
 
     private lateinit var mEventListener: EventListener
 
-    private var data = mutableListOf<MainMemberData>()
+    private var data = mutableListOf<AddressData>()
     lateinit var context: Context
 
 
@@ -29,12 +31,12 @@ class AddressAdepter ()  : RecyclerView.Adapter<AddressAdepter.MyViewHolder>() {
 
 
     interface EventListener {
-        fun onItemClick(pos: Int, item: MainMemberData)
+        fun onItemClick(pos: Int, item: AddressData)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val inflater = LayoutInflater.from(context)
-        val itemBinding = DataBindingUtil.inflate<ListMainmemberBinding>(
+        val itemBinding = DataBindingUtil.inflate<ListAddressBinding>(
             inflater,
             R.layout.list_mainmember, parent, false
         )
@@ -47,7 +49,7 @@ class AddressAdepter ()  : RecyclerView.Adapter<AddressAdepter.MyViewHolder>() {
 
     }
 
-    fun getItem(p: Int): MainMemberData {
+    fun getItem(p: Int): AddressData {
         return data[p]
 
     }
@@ -56,8 +58,8 @@ class AddressAdepter ()  : RecyclerView.Adapter<AddressAdepter.MyViewHolder>() {
         val item = getItem(position)
         try {
 
-            holder.itemBinding.tvName.text = item.Name
-            holder.itemBinding.tvNumber.text = item.Number
+            holder.itemBinding.tvRName.text = item.Relation
+            holder.itemBinding.tvBusiness.text = item.Business
 
         } catch (e: java.lang.Exception) {
             e.printStackTrace()
@@ -69,7 +71,7 @@ class AddressAdepter ()  : RecyclerView.Adapter<AddressAdepter.MyViewHolder>() {
 
     }
 
-    fun addAll(mData: List<MainMemberData>?) {
+    fun addAll(mData: List<AddressData>?) {
         data.clear()
         data.addAll(mData!!)
         notifyDataSetChanged()
@@ -81,5 +83,5 @@ class AddressAdepter ()  : RecyclerView.Adapter<AddressAdepter.MyViewHolder>() {
         notifyDataSetChanged()
     }
 
-    inner class MyViewHolder(internal var itemBinding: ListMainmemberBinding) : RecyclerView.ViewHolder(itemBinding.root)
+    inner class MyViewHolder(internal var itemBinding: ListAddressBinding) : RecyclerView.ViewHolder(itemBinding.root)
 }

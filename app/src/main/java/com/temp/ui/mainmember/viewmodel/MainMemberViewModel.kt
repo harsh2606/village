@@ -46,6 +46,7 @@ class MainMemberViewModel (application: Application) : BaseViewModel(application
     }
 
     private fun init() {
+
         id = (mContext as Activity).intent.extras?.getSerializable("id") as VilllageListData
 
         binder.edtSearch.addTextChangedListener(object : TextWatcher {
