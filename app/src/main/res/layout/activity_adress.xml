@@ -46,6 +46,7 @@
       </LinearLayout>
 
         <com.temp.custom.CTextView
+            android:id="@+id/tvAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Address"

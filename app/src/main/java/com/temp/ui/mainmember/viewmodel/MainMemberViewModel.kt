@@ -55,11 +55,13 @@ class MainMemberViewModel (application: Application) : BaseViewModel(application
         mainMemberAdepter.setEventListener(object : MainMemberAdepter.EventListener {
             override fun onItemClick(pos: Int, item: MainMemberData) {
                 var intent = Intent(mContext, AdressActivity::class.java)
-                intent.putExtra("id",item)
+                intent.putExtra("mainmemberdata",item)
                 mContext.startActivity(intent)
 
             }
         })
+
+
 
         binder.edtSearch.addTextChangedListener(object : TextWatcher {
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
@@ -115,6 +117,9 @@ class MainMemberViewModel (application: Application) : BaseViewModel(application
                     mainMemberAdepter.setEventListener(object : MainMemberAdepter.EventListener {
 
                         override fun onItemClick(pos: Int, item: MainMemberData) {
+                            var intent = Intent(mContext, AdressActivity::class.java)
+                            intent.putExtra("mainmemberdata",item)
+                            mContext.startActivity(intent)
                         }
                     })
                     Debug.e("Get All Data Successfully")

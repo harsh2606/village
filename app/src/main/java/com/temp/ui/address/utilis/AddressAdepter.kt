@@ -38,7 +38,7 @@ class AddressAdepter ()  : RecyclerView.Adapter<AddressAdepter.MyViewHolder>() {
         val inflater = LayoutInflater.from(context)
         val itemBinding = DataBindingUtil.inflate<ListAddressBinding>(
             inflater,
-            R.layout.list_mainmember, parent, false
+            R.layout.list_address, parent, false
         )
         return MyViewHolder(itemBinding)
     }
@@ -58,8 +58,8 @@ class AddressAdepter ()  : RecyclerView.Adapter<AddressAdepter.MyViewHolder>() {
         val item = getItem(position)
         try {
 
-            holder.itemBinding.tvRName.text = item.Relation
-            holder.itemBinding.tvBusiness.text = item.Business
+            holder.itemBinding.tvRName.text = item.relation
+            holder.itemBinding.tvBusiness.text = item.business
 
         } catch (e: java.lang.Exception) {
             e.printStackTrace()

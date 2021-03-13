@@ -5,7 +5,7 @@ import android.util.Log
 
 object Debug {
 
-    const val DEBUG = false
+    const val DEBUG = true
     const val DEBUG_EXCEPTION = true
 
     private const val MAX_LOG_LENGTH = 4000

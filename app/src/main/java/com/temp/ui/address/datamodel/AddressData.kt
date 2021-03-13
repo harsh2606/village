@@ -5,8 +5,8 @@ import com.temp.ui.mainmember.datamodel.MainMemberData
 
 class AddressData {
     var id: String? = null
-    var Relation: String? = null
-    var Business: String? = null
-    var Dob: String? = null
-    var MainMemberid: String? = null
+    var relation: String? = null
+    var business: String? = null
+    var dob: String? = null
+    var mainmemberid: String? = null
 }

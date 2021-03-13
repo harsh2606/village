@@ -7,6 +7,7 @@ class MainMemberData : Serializable {
     var Name: String? = null
     var Number: String? = null
     var villageid: String? = null
+    var address: String? = null
 
 
 
