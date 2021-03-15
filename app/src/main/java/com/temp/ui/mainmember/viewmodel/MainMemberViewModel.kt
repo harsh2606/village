@@ -17,7 +17,10 @@ import com.temp.base.viewmodel.BaseViewModel
 import com.temp.databinding.ActivityMainMemberBinding
 import com.temp.databinding.ActivityVillageListBinding
 import com.temp.interfaces.TopBarClickListener
+import com.temp.ui.addmember.view.AddMembarActivity
 import com.temp.ui.address.view.AdressActivity
+import com.temp.ui.addvillage.datamodel.AddVillage
+import com.temp.ui.addvillage.view.AddVillageActivity
 import com.temp.ui.mainmember.datamodel.MainMemberData
 import com.temp.ui.mainmember.utilis.MainMemberAdepter
 import com.temp.ui.mainmember.view.MainMemberActivity
@@ -29,8 +32,8 @@ class MainMemberViewModel (application: Application) : BaseViewModel(application
     private lateinit var binder: ActivityMainMemberBinding
     private lateinit var mContext: Context
     lateinit var mainMemberAdepter: MainMemberAdepter
-    lateinit var  mainMemberData: MainMemberData
-    var id: VilllageListData? = null
+//    lateinit var  mainMemberData: MainMemberData
+    var id: AddVillage? = null
     val mainMemberList: MutableList<MainMemberData> = ArrayList()
 
 
@@ -42,13 +45,14 @@ class MainMemberViewModel (application: Application) : BaseViewModel(application
         this.binder.topbar.topBarClickListener = SlideMenuClickListener()
         this.binder.topbar.isTextShow = true
         this.binder.topbar.isBackShow = true
-        mainMemberData= MainMemberData()
+        this.binder.topbar.tvTitleText.text = (mContext as Activity).getString(R.string.mainmember_list)
+//        mainMemberData= MainMemberData()
         init()
     }
 
     private fun init() {
 
-        id = (mContext as Activity).intent.extras?.getSerializable("id") as VilllageListData
+        id = (mContext as Activity).intent.extras?.getSerializable("id") as AddVillage
 
         mainMemberAdepter = MainMemberAdepter(mContext)
         binder.rvMainMemberList.adapter = mainMemberAdepter
@@ -61,40 +65,10 @@ class MainMemberViewModel (application: Application) : BaseViewModel(application
             }
         })
 
-
-
-        binder.edtSearch.addTextChangedListener(object : TextWatcher {
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-            }
-
-            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
-            }
-
-            override fun afterTextChanged(s: Editable) {
-
-                // filter your list from your input
-                if (mainMemberList.isNotEmpty()) {
-                    filter(s.toString())
-                }
-                //you can use runnable postDelayed like 500 ms to delay search text
-            }
-        })
-
         getMainMember()
     }
 
-    fun filter(text: String?) {
-        val temp: MutableList<MainMemberData> = ArrayList()
-        for (d in mainMemberList) {
-            //or use .equal(text) with you want equal match
-            //use .toLowerCase() for better matches
-            if (text?.toLowerCase()?.let { d.Name!!.contains(it) } == true) {
-                temp.add(d)
-            }
-        }
-        //update recyclerview
-        mainMemberAdepter.addAll(temp)
-    }
+
 
     private fun getMainMember() {
         try {
@@ -159,6 +133,15 @@ class MainMemberViewModel (application: Application) : BaseViewModel(application
 
 
     inner class ViewClickHandler {
+
+        fun onAddMembar(view: View) {
+            try {
+                var intent = Intent(mContext, AddMembarActivity::class.java)
+                mContext.startActivity(intent)
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
 
     }
 }

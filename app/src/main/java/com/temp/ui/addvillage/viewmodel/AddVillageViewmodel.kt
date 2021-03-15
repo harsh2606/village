@@ -54,22 +54,23 @@ class AddVillageViewmodel (application: Application) : BaseViewModel(application
 
     fun addVillage(village: AddVillage) {
 
-        showDialog("", mContext as Activity)
-        village.id = db!!.collection(FirestoreTable.VillageList).document().id
-        db!!.collection(FirestoreTable.VillageList)
-            .document(village.id!!)
-            .set(village)
-            .addOnSuccessListener {
-                dismissDialog()
-                showToast("Village Added Successfully")
-                Debug.e(TAG, "Village Added Successfully")
-                (mContext as Activity).finish()
-            }
-            .addOnFailureListener { exception ->
-                dismissDialog()
-                exception.printStackTrace()
-            }
+         showDialog("", mContext as Activity)
+   village.id = db!!.collection(FirestoreTable.VillageList).document().id
+    db!!.collection(FirestoreTable.VillageList)
+    .document(village.id!!)
+    .set(village)
+    .addOnSuccessListener {
+        dismissDialog()
+        showToast("Village Added Successfully")
+        Debug.e(TAG, "Village Added Successfully")
+        (mContext as Activity).finish()
     }
+    .addOnFailureListener { exception ->
+        dismissDialog()
+        exception.printStackTrace()
+    }
+    }
+
 
 
 

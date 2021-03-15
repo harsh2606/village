@@ -57,72 +57,17 @@ class VillageListViewModel(application: Application) : BaseViewModel(application
             }
         })
 
-//      binder.edtSearch.addTextChangedListener(object : TextWatcher{
-//          override fun afterTextChanged(s: Editable?) {
-//          }
-//
-//          override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-//          }
-//
-//          override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-//
-//              if (villageList.isNotEmpty()){
-//
-//                  filter(s.toString())
-//              }
-//          }
-//
-//      })
+
 
 
     }
 
-
-
-//    fun filter(text: String?){
-//        val temp:MutableList<VilllageListData> = ArrayList()
-//        for (d in villageList){
-//            if (text?.toLowerCase()?.let { d.Village!!.contains(it) } == true){
-//                temp.add(d)
-//            }
-//        }
-//        villageListAdepter.addAll(temp)
-//    }
 
     fun onResume() {
         getVillageList()
     }
 
-//    private fun getVillageList() {
-//        try {
-//
-////            var query = db.collection(FirestoreTable.CHAT)
-////                .whereEqualTo(RequestParamsUtils.SENDER_ID, loggedInUserId)
-//            showDialog("",mContext as Activity)
-//            var query = db!!.collection(FirestoreTable.VillageList).orderBy("Village")
-//
-//
-//            query.get().addOnSuccessListener { result ->
-//                if (result != null && result.isEmpty.not()) {
-//                    val item = result.toObjects(AddVillage::class.java)
-////                    villageList.addAll(item)
-//                    villageListAdepter.addAll(item)
-//                    Debug.e("Village List Data Successfully")
-//                }
-//                dismissDialog()
-//            }.addOnFailureListener {
-//                it.printStackTrace()
-//                dismissDialog()
-//            }.addOnCompleteListener {
-//                dismissDialog()
-//            }
-//
-//
-//        } catch (e: Exception) {
-//            e.printStackTrace()
-//        }
-//
-//    }
+
 
     private fun getVillageList() {
         try {
@@ -135,7 +80,18 @@ class VillageListViewModel(application: Application) : BaseViewModel(application
                 dismissDialog()
                 if (result != null && result.isEmpty.not()) {
                     val item = result.toObjects(AddVillage::class.java)
+                    villageListAdepter = VillageListAdepter(mContext)
                     villageListAdepter.addAll(item)
+
+                    binder.rvVillageList.adapter = villageListAdepter
+                    villageListAdepter.setEventListener(object : VillageListAdepter.EventListener {
+                        override fun onItemClick(pos: Int, item: AddVillage) {
+                            var intent = Intent(mContext, MainMemberActivity::class.java)
+                            intent.putExtra("id",item)
+                            mContext.startActivity(intent)
+
+                        }
+                    })
                 }
 
             }.addOnFailureListener {
@@ -176,7 +132,6 @@ class VillageListViewModel(application: Application) : BaseViewModel(application
             try {
                 var intent = Intent(mContext, AddVillageActivity::class.java)
                 mContext.startActivity(intent)
-                (mContext as Activity).finish()
             } catch (e: Exception) {
                 e.printStackTrace()
             }

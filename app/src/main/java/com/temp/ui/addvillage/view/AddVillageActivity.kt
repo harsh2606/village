@@ -14,6 +14,7 @@ import com.temp.ui.addvillage.viewmodel.AddVillageViewmodel
 class AddVillageActivity : BaseActivity() {
     lateinit var binding: ActivityAddVillageBinding
     lateinit var viewModel: AddVillageViewmodel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)

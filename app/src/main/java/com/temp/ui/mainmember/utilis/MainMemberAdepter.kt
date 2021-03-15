@@ -58,8 +58,8 @@ class MainMemberAdepter ()  : RecyclerView.Adapter<MainMemberAdepter.MyViewHolde
         val item = getItem(position)
         try {
 
-            holder.itemBinding.tvName.text = item.Name
-            holder.itemBinding.tvNumber.text = item.Number
+            holder.itemBinding.tvName.text = item.name
+            holder.itemBinding.tvNumber.text = item.number
 
         } catch (e: java.lang.Exception) {
             e.printStackTrace()
