@@ -24,7 +24,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.address.view.AdressActivity"></activity>
+        <activity android:name=".ui.addvillage.view.AddVillageActivity"></activity>
+        <activity android:name=".ui.address.view.AdressActivity" />
         <activity android:name=".ui.mainmember.view.MainMemberActivity" />
         <activity android:name=".ui.villagelist.view.VillageListActivity" />
         <activity android:name=".ui.villagelist.VillageListActivity" />

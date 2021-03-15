@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.content.Intent
+import android.text.AutoText
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
@@ -15,19 +16,20 @@ import com.temp.apputils.Utils
 import com.temp.base.viewmodel.BaseViewModel
 import com.temp.databinding.ActivityVillageListBinding
 import com.temp.interfaces.TopBarClickListener
+import com.temp.ui.addvillage.datamodel.AddVillage
+import com.temp.ui.addvillage.view.AddVillageActivity
 import com.temp.ui.mainmember.view.MainMemberActivity
 import com.temp.ui.villagelist.datamodel.VilllageListData
 import com.temp.ui.villagelist.utilis.VillageListAdepter
+import java.util.ArrayList
 
 class VillageListViewModel(application: Application) : BaseViewModel(application) {
 
     private lateinit var binder: ActivityVillageListBinding
     private lateinit var mContext: Context
     lateinit var villageListAdepter: VillageListAdepter
-    lateinit var  villageListData: VilllageListData
-    val villageList: MutableList<VilllageListData> = ArrayList()
-
-
+//    lateinit var  villageListData: VilllageListData
+     val villageList:MutableList<VilllageListData> = ArrayList()
 
     fun setBinder(binder: ActivityVillageListBinding) {
         this.binder = binder
@@ -37,7 +39,8 @@ class VillageListViewModel(application: Application) : BaseViewModel(application
         this.binder.topBar.topBarClickListener = SlideMenuClickListener()
         this.binder.topBar.isTextShow = true
         this.binder.topBar.isBackShow = true
-        villageListData = VilllageListData()
+        this.binder.topBar.tvTitleText.text = (mContext as Activity).getString(R.string.village_list)
+//        villageListData = VilllageListData()
         init()
     }
 
@@ -46,7 +49,7 @@ class VillageListViewModel(application: Application) : BaseViewModel(application
         villageListAdepter = VillageListAdepter(mContext)
         binder.rvVillageList.adapter = villageListAdepter
         villageListAdepter.setEventListener(object : VillageListAdepter.EventListener {
-            override fun onItemClick(pos: Int, item: VilllageListData) {
+            override fun onItemClick(pos: Int, item: AddVillage) {
                 var intent = Intent(mContext, MainMemberActivity::class.java)
                 intent.putExtra("id",item)
                 mContext.startActivity(intent)
@@ -54,54 +57,87 @@ class VillageListViewModel(application: Application) : BaseViewModel(application
             }
         })
 
-        binder.edtSearch.addTextChangedListener(object : TextWatcher {
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-            }
+//      binder.edtSearch.addTextChangedListener(object : TextWatcher{
+//          override fun afterTextChanged(s: Editable?) {
+//          }
+//
+//          override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+//          }
+//
+//          override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+//
+//              if (villageList.isNotEmpty()){
+//
+//                  filter(s.toString())
+//              }
+//          }
+//
+//      })
 
-            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
-            }
 
-            override fun afterTextChanged(s: Editable) {
+    }
 
-                // filter your list from your input
-                if (villageList.isNotEmpty()) {
-                    filter(s.toString())
-                }
-                //you can use runnable postDelayed like 500 ms to delay search text
-            }
-        })
 
+
+//    fun filter(text: String?){
+//        val temp:MutableList<VilllageListData> = ArrayList()
+//        for (d in villageList){
+//            if (text?.toLowerCase()?.let { d.Village!!.contains(it) } == true){
+//                temp.add(d)
+//            }
+//        }
+//        villageListAdepter.addAll(temp)
+//    }
+
+    fun onResume() {
         getVillageList()
     }
-    fun filter(text: String?) {
-        val temp: MutableList<VilllageListData> = ArrayList()
-        for (d in villageList) {
-            //or use .equal(text) with you want equal match
-            //use .toLowerCase() for better matches
-            if (text?.toLowerCase()?.let { d.Village!!.contains(it) } == true) {
-                temp.add(d)
-            }
-        }
-        //update recyclerview
-        villageListAdepter.addAll(temp)
-    }
+
+//    private fun getVillageList() {
+//        try {
+//
+////            var query = db.collection(FirestoreTable.CHAT)
+////                .whereEqualTo(RequestParamsUtils.SENDER_ID, loggedInUserId)
+//            showDialog("",mContext as Activity)
+//            var query = db!!.collection(FirestoreTable.VillageList).orderBy("Village")
+//
+//
+//            query.get().addOnSuccessListener { result ->
+//                if (result != null && result.isEmpty.not()) {
+//                    val item = result.toObjects(AddVillage::class.java)
+////                    villageList.addAll(item)
+//                    villageListAdepter.addAll(item)
+//                    Debug.e("Village List Data Successfully")
+//                }
+//                dismissDialog()
+//            }.addOnFailureListener {
+//                it.printStackTrace()
+//                dismissDialog()
+//            }.addOnCompleteListener {
+//                dismissDialog()
+//            }
+//
+//
+//        } catch (e: Exception) {
+//            e.printStackTrace()
+//        }
+//
+//    }
+
     private fun getVillageList() {
         try {
 
-//            var query = db.collection(FirestoreTable.CHAT)
-//                .whereEqualTo(RequestParamsUtils.SENDER_ID, loggedInUserId)
-            showDialog("",mContext as Activity)
-            var query = db!!.collection(FirestoreTable.VillageList).orderBy("Village")
+            var query = db!!.collection(FirestoreTable.VillageList).orderBy("village")
 
+            showDialog("",(mContext as Activity))
 
             query.get().addOnSuccessListener { result ->
-                if (result != null && result.isEmpty.not()) {
-                    val item = result.toObjects(VilllageListData::class.java)
-                    villageList.addAll(item)
-                    villageListAdepter.addAll(item)
-                    Debug.e("Village List Data Successfully")
-                }
                 dismissDialog()
+                if (result != null && result.isEmpty.not()) {
+                    val item = result.toObjects(AddVillage::class.java)
+                    villageListAdepter.addAll(item)
+                }
+
             }.addOnFailureListener {
                 it.printStackTrace()
                 dismissDialog()
@@ -136,11 +172,11 @@ class VillageListViewModel(application: Application) : BaseViewModel(application
 
 
     inner class ViewClickHandler {
-        fun onReviewsAndRanks(view: View) {
+        fun onAddVillage(view: View) {
             try {
-//                var intent = Intent(mContext, ReviewsAndRankActivity::class.java)
-//                mContext.startActivity(intent)
-//                (mContext as Activity).finish()
+                var intent = Intent(mContext, AddVillageActivity::class.java)
+                mContext.startActivity(intent)
+                (mContext as Activity).finish()
             } catch (e: Exception) {
                 e.printStackTrace()
             }

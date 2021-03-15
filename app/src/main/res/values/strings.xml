@@ -254,6 +254,8 @@
     <string name="email_id">marie@gmail.com</string>
 
     <string name="shop_list">Shop List</string>
+    <string name="village_list">Village List</string>
+    <string name="add_village">Add_Village</string>
     <string name="addshop">Add Shop </string>
     <string name="profile">Profile</string>
     <string name="maintenance">Maintenance</string>

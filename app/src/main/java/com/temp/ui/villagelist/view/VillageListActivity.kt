@@ -25,4 +25,9 @@ class VillageListActivity: BaseActivity() {
         viewModel = ViewModelProvider(activity).get(VillageListViewModel::class.java)
         viewModel.setBinder(binding)
     }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.onResume()
+    }
 }

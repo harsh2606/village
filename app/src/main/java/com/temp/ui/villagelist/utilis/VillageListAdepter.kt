@@ -7,6 +7,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.temp.R
 import com.temp.databinding.ListVillageBinding
+import com.temp.ui.addvillage.datamodel.AddVillage
 import com.temp.ui.villagelist.datamodel.VilllageListData
 import kotlinx.android.synthetic.main.list_village.view.*
 
@@ -14,7 +15,7 @@ class VillageListAdepter ()  : RecyclerView.Adapter<VillageListAdepter.MyViewHol
 
     private lateinit var mEventListener: EventListener
 
-    private var data = mutableListOf<VilllageListData>()
+    private var data = mutableListOf<AddVillage>()
     lateinit var context: Context
 
 
@@ -29,7 +30,7 @@ class VillageListAdepter ()  : RecyclerView.Adapter<VillageListAdepter.MyViewHol
 
 
     interface EventListener {
-        fun onItemClick(pos: Int, item: VilllageListData)
+        fun onItemClick(pos: Int, item: AddVillage)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -47,7 +48,7 @@ class VillageListAdepter ()  : RecyclerView.Adapter<VillageListAdepter.MyViewHol
 
     }
 
-    fun getItem(p: Int): VilllageListData {
+    fun getItem(p: Int): AddVillage{
         return data[p]
 
     }
@@ -56,7 +57,7 @@ class VillageListAdepter ()  : RecyclerView.Adapter<VillageListAdepter.MyViewHol
         val item = getItem(position)
         try {
 
-            holder.itemBinding.tvVillage.text = item.Village
+            holder.itemBinding.tvVillage.text = item.village
 
         } catch (e: java.lang.Exception) {
             e.printStackTrace()
@@ -68,7 +69,7 @@ class VillageListAdepter ()  : RecyclerView.Adapter<VillageListAdepter.MyViewHol
 
     }
 
-    fun addAll(mData: List<VilllageListData>?) {
+    fun addAll(mData: List<AddVillage>?) {
         data.clear()
         data.addAll(mData!!)
         notifyDataSetChanged()
