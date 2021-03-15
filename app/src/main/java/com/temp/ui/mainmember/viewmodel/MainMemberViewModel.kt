@@ -52,7 +52,7 @@ class MainMemberViewModel (application: Application) : BaseViewModel(application
 
     private fun init() {
 
-        id = (mContext as Activity).intent.extras?.getSerializable("id") as AddVillage
+//        id = (mContext as Activity).intent.extras?.getSerializable("id") as AddVillage
 
         mainMemberAdepter = MainMemberAdepter(mContext)
         binder.rvMainMemberList.adapter = mainMemberAdepter
@@ -65,7 +65,14 @@ class MainMemberViewModel (application: Application) : BaseViewModel(application
             }
         })
 
-        getMainMember()
+//        getMainMember()
+    }
+
+    fun onResume() {
+        id = (mContext as Activity).intent.extras?.getSerializable("villagelist") as AddVillage
+        if(id != null){
+            getMainMember()
+        }
     }
 
 
@@ -77,7 +84,7 @@ class MainMemberViewModel (application: Application) : BaseViewModel(application
 //                .whereEqualTo(RequestParamsUtils.SENDER_ID, loggedInUserId)
             Debug.e("villageID",id?.id)
             showDialog("",mContext as Activity)
-            var query = db!!.collection(FirestoreTable.MainMember).whereEqualTo("villageid",id?.id)
+            var query = db!!.collection(FirestoreTable.MainMember).whereEqualTo("id",id?.id)
 
 
             query.get().addOnSuccessListener { result ->

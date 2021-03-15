@@ -51,7 +51,7 @@ class VillageListViewModel(application: Application) : BaseViewModel(application
         villageListAdepter.setEventListener(object : VillageListAdepter.EventListener {
             override fun onItemClick(pos: Int, item: AddVillage) {
                 var intent = Intent(mContext, MainMemberActivity::class.java)
-                intent.putExtra("id",item)
+                intent.putExtra("villagelist",item)
                 mContext.startActivity(intent)
 
             }
@@ -87,7 +87,7 @@ class VillageListViewModel(application: Application) : BaseViewModel(application
                     villageListAdepter.setEventListener(object : VillageListAdepter.EventListener {
                         override fun onItemClick(pos: Int, item: AddVillage) {
                             var intent = Intent(mContext, MainMemberActivity::class.java)
-                            intent.putExtra("id",item)
+                            intent.putExtra("villagelist",item)
                             mContext.startActivity(intent)
 
                         }

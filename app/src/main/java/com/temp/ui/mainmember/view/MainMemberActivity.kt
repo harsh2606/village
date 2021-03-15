@@ -25,4 +25,8 @@ class MainMemberActivity : BaseActivity() {
         viewModel = ViewModelProvider(activity).get(MainMemberViewModel::class.java)
         viewModel.setBinder(binding)
     }
+    override fun onResume() {
+        super.onResume()
+        viewModel.onResume()
+    }
 }
