@@ -24,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            tools:context=".ui.addevents.view.AddEventsActivity">
+            tools:context=".ui.addvillage.view.AddVillageActivity">
 
             <include
                 android:id="@+id/topbar"

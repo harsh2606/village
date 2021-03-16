@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.temp.R
 import com.temp.databinding.ListMainmemberBinding
 import com.temp.databinding.ListVillageBinding
+import com.temp.ui.mainmember.datamodel.AddMemberData
 import com.temp.ui.mainmember.datamodel.MainMemberData
 import com.temp.ui.villagelist.datamodel.VilllageListData
 import com.temp.ui.villagelist.utilis.VillageListAdepter
@@ -16,7 +17,7 @@ class MainMemberAdepter ()  : RecyclerView.Adapter<MainMemberAdepter.MyViewHolde
 
     private lateinit var mEventListener: EventListener
 
-    private var data = mutableListOf<MainMemberData>()
+    private var data = mutableListOf<AddMemberData>()
     lateinit var context: Context
 
 
@@ -31,7 +32,7 @@ class MainMemberAdepter ()  : RecyclerView.Adapter<MainMemberAdepter.MyViewHolde
 
 
     interface EventListener {
-        fun onItemClick(pos: Int, item: MainMemberData)
+        fun onItemClick(pos: Int, item:AddMemberData)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -49,7 +50,7 @@ class MainMemberAdepter ()  : RecyclerView.Adapter<MainMemberAdepter.MyViewHolde
 
     }
 
-    fun getItem(p: Int):MainMemberData {
+    fun getItem(p: Int):AddMemberData {
         return data[p]
 
     }
@@ -71,7 +72,7 @@ class MainMemberAdepter ()  : RecyclerView.Adapter<MainMemberAdepter.MyViewHolde
 
     }
 
-    fun addAll(mData: List<MainMemberData>?) {
+    fun addAll(mData: List<AddMemberData>?) {
         data.clear()
         data.addAll(mData!!)
         notifyDataSetChanged()

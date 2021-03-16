@@ -31,7 +31,6 @@ class AddVillageViewmodel (application: Application) : BaseViewModel(application
     private lateinit var mContext: Context
     var addVillage : AddVillage ?= null
     private val TAG = "AddEventsModel"
-    var cal = Calendar.getInstance()
 
 
     fun setBinder(binder: ActivityAddVillageBinding) {

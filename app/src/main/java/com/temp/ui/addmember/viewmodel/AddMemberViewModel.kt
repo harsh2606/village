@@ -14,6 +14,7 @@ import com.temp.databinding.ActivityAddMembarBinding
 import com.temp.databinding.ActivityAddVillageBinding
 import com.temp.interfaces.TopBarClickListener
 import com.temp.ui.addvillage.datamodel.AddVillage
+import com.temp.ui.mainmember.datamodel.AddMemberData
 import com.temp.ui.mainmember.datamodel.MainMemberData
 import java.util.*
 
@@ -22,7 +23,7 @@ class AddMemberViewModel (application: Application) : BaseViewModel(application)
 
     private lateinit var binder: ActivityAddMembarBinding
     private lateinit var mContext: Context
-  lateinit var  mainMemberData: MainMemberData
+  lateinit var  addMemberData: AddMemberData
     var id: AddVillage? = null
     private val TAG = "AddMemberModel"
 
@@ -37,16 +38,16 @@ class AddMemberViewModel (application: Application) : BaseViewModel(application)
         this.binder.topbar.isTextShow = true
         this.binder.topbar.isBackShow = true
         this.binder.topbar.tvTitleText.text = (mContext as Activity).getString(R.string.add_member)
-        mainMemberData= MainMemberData()
+        addMemberData = AddMemberData()
         init()
     }
 
     private fun init() {
-//        id = (mContext as Activity).intent.extras?.getSerializable("id") as AddVillage
+        id = (mContext as Activity).intent.extras?.getSerializable("id") as AddVillage
 
     }
 
-    fun addMember(member:MainMemberData) {
+    fun addMember(member:AddMemberData) {
 
         showDialog("", mContext as Activity)
         member.id = db!!.collection(FirestoreTable.MainMember).document().id
@@ -65,29 +66,21 @@ class AddMemberViewModel (application: Application) : BaseViewModel(application)
             }
     }
 
-
-
-
     inner class ViewClickHandler {
 
         fun onAddMember(view: View) {
             try {
                 if (isValidate()) {
-                    mainMemberData?.name = binder.edtName.text.toString()
-                    mainMemberData?.number = binder.edtNumber.text.toString()
-                    mainMemberData?.address = binder.edtAddress.text.toString()
-//                    addEvents?.eventsDetail = binder.edtEventDetail.text.toString()
-//                    mainMemberData!!.villageid
-                    addMember(mainMemberData!!)
+                    addMemberData?.name = binder.edtName.text.toString()
+                    addMemberData?.number = binder.edtNumber.text.toString()
+                    addMemberData?.address = binder.edtAddress.text.toString()
+                    addMemberData!!.villageid = id!!.id
+                    addMember(addMemberData!!)
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
             }
         }
-
-
-
-
 
     }
 
