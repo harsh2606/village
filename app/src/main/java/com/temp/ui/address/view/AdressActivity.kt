@@ -16,6 +16,7 @@ import com.temp.ui.mainmember.viewmodel.MainMemberViewModel
 class AdressActivity : BaseActivity() {
     lateinit var binding: ActivityAdressBinding
     lateinit var viewModel: AddressViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)

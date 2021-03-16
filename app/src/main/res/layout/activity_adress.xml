@@ -13,70 +13,173 @@
             name="viewModel"
             type="com.temp.ui.address.viewmodel.AddressViewModel" />
     </data>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".ui.address.view.AdressActivity"
-      >
 
-        <include
-            android:id="@+id/topbar"
-            layout="@layout/topbar" />
 
-        <LinearLayout
+
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical">-->
+
+<!--      <LinearLayout-->
+<!--          android:layout_width="match_parent"-->
+<!--          android:layout_height="wrap_content"-->
+<!--          android:orientation="vertical"-->
+<!--          android:background="@color/success_bg">-->
+
+<!--          <com.temp.custom.CTextView-->
+<!--              android:layout_width="wrap_content"-->
+<!--              android:layout_height="wrap_content"-->
+<!--              android:text="Address"-->
+<!--              android:layout_gravity="center_vertical"-->
+<!--              android:gravity="center"-->
+<!--              android:padding="@dimen/_10sdp"-->
+<!--             />-->
+<!--      </LinearLayout>-->
+
+<!--        <com.temp.custom.CTextView-->
+<!--            android:id="@+id/tvAddress"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Address"-->
+<!--            android:layout_marginTop="@dimen/_5sdp"/>-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="vertical"-->
+<!--                android:background="@color/success_bg">-->
+
+<!--                <com.temp.custom.CTextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Address"-->
+<!--                    android:layout_gravity="center_vertical"-->
+<!--                    android:gravity="center"-->
+<!--                    android:padding="@dimen/_10sdp"-->
+<!--                    />-->
+<!--            </LinearLayout>-->
+
+
+<!--            <androidx.recyclerview.widget.RecyclerView-->
+<!--                android:id="@+id/rvAddressList"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:visibility="visible"-->
+<!--                tools:listitem="@layout/list_address"-->
+<!--                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />-->
+<!--        </LinearLayout>-->
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true">
 
-      <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:orientation="vertical"
-          android:background="@color/success_bg">
 
-          <com.temp.custom.CTextView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="Address"
-              android:layout_gravity="center_vertical"
-              android:gravity="center"
-              android:padding="@dimen/_10sdp"
-             />
-      </LinearLayout>
-
-        <com.temp.custom.CTextView
-            android:id="@+id/tvAddress"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Address"
-            android:layout_marginTop="@dimen/_5sdp"/>
+            <include
+                android:id="@+id/topbar"
+                layout="@layout/topbar" />
 
             <LinearLayout
+                android:id="@+id/llMain"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="?attr/actionBarSize"
                 android:orientation="vertical"
-                android:background="@color/success_bg">
+                tools:context=".ui.address.view.AdressActivity">
 
-                <com.temp.custom.CTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Address"
-                    android:layout_gravity="center_vertical"
-                    android:gravity="center"
-                    android:padding="@dimen/_10sdp"
-                    />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cvFullSearch"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginEnd="@dimen/_15sdp"
+                        android:layout_marginBottom="@dimen/_3sdp"
+                        android:visibility="gone"
+                        app:cardCornerRadius="@dimen/_5sdp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="@dimen/_8sdp"
+                                android:contentDescription="@null"
+                                android:src="@drawable/ic_group_search" />
+
+                            <com.temp.custom.CEditTextView
+                                android:id="@+id/edtSearch"
+                                style="@style/txt_000_14"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:layout_weight="1"
+                                android:background="@null"
+                                android:hint="Please choose your office"
+                                android:paddingStart="@dimen/_5sdp"
+                                android:paddingTop="@dimen/_8sdp"
+                                android:paddingBottom="@dimen/_8sdp"
+                                android:singleLine="true" />
+
+                            <com.temp.custom.CTextView
+                                android:id="@+id/tvCancel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:layout_marginEnd="@dimen/_10sdp"
+                                android:gravity="center"
+                                android:singleLine="true"
+                                android:text="Cancel"
+                                android:visibility="gone" />
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                </FrameLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvAddressList"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:orientation="vertical"
+                    android:visibility="visible"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/list_address"/>
+
             </LinearLayout>
 
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvAddressList"
-                android:layout_width="match_parent"
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="visible"
-                tools:listitem="@layout/list_address"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-        </LinearLayout>
+                android:layout_gravity="bottom|end"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                app:backgroundTint="@color/main_bg"
+                app:borderWidth="0dp"
+                app:elevation="6dp"
+                app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
+                app:maxImageSize="25dp"
+                app:pressedTranslationZ="12dp"
+                app:srcCompat="@drawable/ic_baseline_add_24"
+                app:tint="@null"
+                android:onClick="@{(v)->viewClickHandler.onAddMembar(v)}"/>
 
-    </LinearLayout>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
 </layout>

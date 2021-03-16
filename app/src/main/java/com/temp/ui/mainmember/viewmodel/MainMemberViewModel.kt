@@ -59,6 +59,11 @@ class MainMemberViewModel (application: Application) : BaseViewModel(application
         binder.rvMainMemberList.adapter = mainMemberAdepter
       mainMemberAdepter.setEventListener(object : MainMemberAdepter.EventListener {
             override fun onItemClick(pos: Int, item: AddMemberData) {
+                var intent = Intent(mContext, AdressActivity::class.java)
+//                intent.putExtra("id",item)
+                mContext.startActivity(intent)
+
+
 
             }
         })
@@ -123,6 +128,16 @@ class MainMemberViewModel (application: Application) : BaseViewModel(application
 
                             val item = documents.toObjects(AddMemberData::class.java)
                            mainMemberAdepter.addAll(item)
+
+                            binder.rvMainMemberList.adapter = mainMemberAdepter
+                            mainMemberAdepter.setEventListener(object : MainMemberAdepter.EventListener {
+                                override fun onItemClick(pos: Int, item: AddMemberData) {
+                                    var intent = Intent(mContext, AdressActivity::class.java)
+                                    intent.putExtra("id",item)
+                                    mContext.startActivity(intent)
+
+                                }
+                            })
                             Debug.e("Get All Data Successfully"+item.toString())
                         }
                         dismissDialog()

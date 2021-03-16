@@ -17,6 +17,8 @@ import com.temp.base.viewmodel.BaseViewModel
 import com.temp.databinding.ActivityAdressBinding
 import com.temp.databinding.ActivityMainMemberBinding
 import com.temp.interfaces.TopBarClickListener
+import com.temp.ui.addmaindetail.view.AddMainDetailActivity
+import com.temp.ui.addmember.view.AddMembarActivity
 import com.temp.ui.address.datamodel.AddressData
 import com.temp.ui.address.utilis.AddressAdepter
 import com.temp.ui.address.view.AdressActivity
@@ -30,7 +32,6 @@ class AddressViewModel (application: Application) : BaseViewModel(application) {
     lateinit var addressAdepter: AddressAdepter
     lateinit var  addressData: AddressData
     var id: MainMemberData? = null
-    val mainMemberList: MutableList<MainMemberData> = ArrayList()
 
 
     fun setBinder(binder:ActivityAdressBinding) {
@@ -46,8 +47,8 @@ class AddressViewModel (application: Application) : BaseViewModel(application) {
     }
 
     private fun init() {
-        id = (mContext as Activity).intent.extras?.getSerializable("mainmemberdata") as MainMemberData?
-         binder.tvAddress.setText(id!!.address)
+        id = (mContext as Activity).intent.extras?.getSerializable("id") as MainMemberData?
+//         binder.tvAddress.setText(id!!.address)
 
         addressAdepter = AddressAdepter(mContext)
         binder.rvAddressList.adapter =addressAdepter
@@ -140,6 +141,16 @@ class AddressViewModel (application: Application) : BaseViewModel(application) {
 
 
     inner class ViewClickHandler {
+
+        fun onAddMembar(view: View) {
+            try {
+                var intent = Intent(mContext, AddMainDetailActivity::class.java)
+                intent.putExtra("id",id)
+                mContext.startActivity(intent)
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
 
     }
 
