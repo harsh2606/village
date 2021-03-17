@@ -29,7 +29,7 @@ class VillageListViewModel(application: Application) : BaseViewModel(application
     private lateinit var mContext: Context
     lateinit var villageListAdepter: VillageListAdepter
 //    lateinit var  villageListData: VilllageListData
-     val villageList:MutableList<VilllageListData> = ArrayList()
+     val villageList:MutableList<AddVillage> = ArrayList()
 
     fun setBinder(binder: ActivityVillageListBinding) {
         this.binder = binder
@@ -57,9 +57,37 @@ class VillageListViewModel(application: Application) : BaseViewModel(application
             }
         })
 
+        binder.edtSearch.addTextChangedListener(object : TextWatcher {
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+            }
+
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+            }
+
+            override fun afterTextChanged(s: Editable) {
+
+                // filter your list from your input
+                if (villageList.isNotEmpty()) {
+                    filter(s.toString())
+                }
+                //you can use runnable postDelayed like 500 ms to delay search text
+            }
+        })
 
 
+    }
 
+    fun filter(text: String?) {
+        val temp: MutableList<AddVillage> = ArrayList()
+        for (d in villageList) {
+            //or use .equal(text) with you want equal match
+            //use .toLowerCase() for better matches
+            if (text?.toLowerCase()?.let { d.village!!.contains(it) } == true) {
+                temp.add(d)
+            }
+        }
+        //update recyclerview
+        villageListAdepter.addAll(temp)
     }
 
 
@@ -69,7 +97,7 @@ class VillageListViewModel(application: Application) : BaseViewModel(application
 
 
 
-    private fun getVillageList() {
+    private fun getVillageList1() {
         try {
 
             var query = db!!.collection(FirestoreTable.VillageList).orderBy("village")
@@ -82,7 +110,7 @@ class VillageListViewModel(application: Application) : BaseViewModel(application
                     val item = result.toObjects(AddVillage::class.java)
                     villageListAdepter = VillageListAdepter(mContext)
                     villageListAdepter.addAll(item)
-
+                    villageList.addAll(item)
                     binder.rvVillageList.adapter = villageListAdepter
                     villageListAdepter.setEventListener(object : VillageListAdepter.EventListener {
                         override fun onItemClick(pos: Int, item: AddVillage) {
@@ -106,6 +134,28 @@ class VillageListViewModel(application: Application) : BaseViewModel(application
             e.printStackTrace()
         }
 
+    }
+
+    fun getVillageList() {
+        val docRef = db!!.collection(FirestoreTable.VillageList).orderBy("village")
+        docRef.addSnapshotListener { value, error ->
+            try {
+                if (error != null) {
+                    Debug.e("Listen failed.", error.message.toString())
+                    return@addSnapshotListener
+                }
+                if (value!!.isEmpty.not() || value != null) {
+                    val item = value.toObjects(AddVillage::class.java)
+                    villageListAdepter.clear()
+                    villageListAdepter.addAll(item)
+                    if(item.size>0) {
+                        villageListAdepter.notifyDataSetChanged()
+                    }
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
     }
 
 

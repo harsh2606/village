@@ -60,7 +60,7 @@ class MainMemberViewModel (application: Application) : BaseViewModel(application
       mainMemberAdepter.setEventListener(object : MainMemberAdepter.EventListener {
             override fun onItemClick(pos: Int, item: AddMemberData) {
                 var intent = Intent(mContext, AdressActivity::class.java)
-//                intent.putExtra("id",item)
+                intent.putExtra("id",item)
                 mContext.startActivity(intent)
 
 
@@ -73,48 +73,7 @@ class MainMemberViewModel (application: Application) : BaseViewModel(application
         getMember()
     }
 
-
-
-    private fun getMemberList() {
-        try {
-
-            var query = db!!.collection(FirestoreTable.MainMember).whereEqualTo("id",id?.id)
-
-            showDialog("",(mContext as Activity))
-
-            query.get().addOnSuccessListener { result ->
-                dismissDialog()
-                if (result != null && result.isEmpty.not()) {
-                    val item = result.toObjects(AddMemberData::class.java)
-                    mainMemberAdepter = MainMemberAdepter(mContext)
-                    mainMemberAdepter.addAll(item)
-                    binder.rvMainMemberList.adapter = mainMemberAdepter
-                    mainMemberAdepter.setEventListener(object : MainMemberAdepter.EventListener {
-                        override fun onItemClick(pos: Int, item: AddMemberData) {
-//                            var intent = Intent(mContext, MainMemberActivity::class.java)
-//                            intent.putExtra("id",item)
-//                            mContext.startActivity(intent)
-
-                        }
-                    })
-                }
-
-            }.addOnFailureListener {
-                it.printStackTrace()
-                dismissDialog()
-            }.addOnCompleteListener {
-                dismissDialog()
-            }
-
-
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-
-    }
-
-
-    private fun getMember() {
+    private fun getMember1() {
         try {
 
             Debug.e("villageID",id?.id)
@@ -151,6 +110,28 @@ class MainMemberViewModel (application: Application) : BaseViewModel(application
             e.printStackTrace()
         }
 
+    }
+
+    fun getMember() {
+        val docRef = db!!.collection(FirestoreTable.MainMember).whereEqualTo("villageid",id?.id!!.trim())
+        docRef.addSnapshotListener { value, error ->
+            try {
+                if (error != null) {
+                    Debug.e("Listen failed.", error.message.toString())
+                    return@addSnapshotListener
+                }
+                if (value!!.isEmpty.not() || value != null) {
+                    val item = value.toObjects(AddMemberData::class.java)
+                    mainMemberAdepter.clear()
+                    mainMemberAdepter.addAll(item)
+                    if(item.size>0) {
+                        mainMemberAdepter.notifyDataSetChanged()
+                    }
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
     }
 
     inner class SlideMenuClickListener : TopBarClickListener {

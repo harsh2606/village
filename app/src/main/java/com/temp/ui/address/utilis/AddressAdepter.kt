@@ -2,6 +2,7 @@ package com.temp.ui.address.utilis
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -57,6 +58,60 @@ class AddressAdepter ()  : RecyclerView.Adapter<AddressAdepter.MyViewHolder>() {
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val item = getItem(position)
         try {
+
+
+
+            if(data.get(position).relation!!.isNullOrEmpty().not()){
+                holder.itemBinding.tvRNames.visibility = View.VISIBLE
+            }else{
+                holder.itemBinding.tvRNames.visibility = View.GONE
+            }
+
+            if(data.get(position).name!!.isNullOrEmpty().not()){
+                holder.itemBinding.tvName.visibility = View.VISIBLE
+            }else{
+                holder.itemBinding.tvName.visibility = View.GONE
+            }
+
+            if(data.get(position).business!!.isNullOrEmpty().not()){
+                holder.itemBinding.tvBusiness1.visibility = View.VISIBLE
+            }else{
+                holder.itemBinding.tvBusiness1.visibility = View.GONE
+            }
+
+            if(data.get(position).dob!!.isNullOrEmpty().not()){
+                holder.itemBinding.tvDob1.visibility = View.VISIBLE
+            }else{
+                holder.itemBinding.tvDob1.visibility = View.GONE
+            }
+
+            if(data.get(position).study!!.isNullOrEmpty().not()){
+                holder.itemBinding.tvStudy1.visibility = View.VISIBLE
+            }else{
+                holder.itemBinding.tvStudy1.visibility = View.GONE
+            }
+
+            if(data.get(position).number!!.isNullOrEmpty().not()){
+                holder.itemBinding.tvNumber1.visibility = View.VISIBLE
+            }else{
+                holder.itemBinding.tvNumber1.visibility = View.GONE
+            }
+
+            if (data.isNullOrEmpty().not()) {
+
+                holder.itemBinding.tvBusiness.visibility = View.VISIBLE
+                holder.itemBinding.tvDob.visibility = View.VISIBLE
+                holder.itemBinding.tvStudy.visibility = View.VISIBLE
+                holder.itemBinding.tvName.visibility = View.VISIBLE
+                holder.itemBinding.tvNumber.visibility = View.VISIBLE
+            } else {
+
+                holder.itemBinding.tvBusiness.visibility = View.GONE
+                holder.itemBinding.tvDob.visibility = View.GONE
+                holder.itemBinding.tvStudy.visibility = View.GONE
+                holder.itemBinding.tvName.visibility = View.GONE
+                holder.itemBinding.tvNumber.visibility = View.GONE
+            }
 
             holder.itemBinding.tvRName.text = item.relation
             holder.itemBinding.tvBusiness.text = item.business

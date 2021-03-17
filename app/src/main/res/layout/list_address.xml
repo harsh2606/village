@@ -8,6 +8,7 @@
         android:layout_height="wrap_content"
         app:cardCornerRadius="@dimen/_8sdp"
         app:cardElevation="@dimen/_5sdp"
+        android:background="@drawable/border_rounded"
        android:layout_marginStart="@dimen/_15sdp"
         android:layout_marginEnd="@dimen/_15sdp"
         android:layout_marginTop="@dimen/_5sdp"
@@ -17,29 +18,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginStart="@dimen/_15sdp">
 
-                <com.temp.custom.CTextViewB
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Name :-"
-                    android:layout_weight="1"
-                    android:layout_marginBottom="@dimen/_3sdp"/>
-
-                <com.temp.custom.CTextViewB
+            <com.temp.custom.CTextViewB
                     android:id="@+id/tvName"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="name"
-                    android:layout_weight="1"
-                    android:layout_marginEnd="@dimen/_155sdp"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
                     android:layout_marginBottom="@dimen/_3sdp"/>
-
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -48,10 +36,11 @@
                 android:layout_marginStart="@dimen/_15sdp">
 
         <com.temp.custom.CTextViewB
+            android:id="@+id/tvRNames"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="relationshn :-"
-            android:layout_weight="1"
+            android:text="Relationshn :-"
+            android:visibility="gone"
             android:layout_marginBottom="@dimen/_3sdp"/>
 
                 <com.temp.custom.CTextViewB
@@ -59,8 +48,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="name"
-                    android:layout_weight="1"
-                    android:layout_marginEnd="@dimen/_155sdp"
+                    android:layout_marginStart="@dimen/_8sdp"
                     android:layout_marginBottom="@dimen/_3sdp"/>
 
             </LinearLayout>
@@ -72,19 +60,19 @@
                 android:layout_marginStart="@dimen/_15sdp">
 
                 <com.temp.custom.CTextViewB
+                    android:id="@+id/tvBusiness1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Business :-"
-                    android:layout_weight="1"
+                    android:visibility="gone"
                     android:layout_marginBottom="@dimen/_3sdp"/>
 
                 <com.temp.custom.CTextViewB
                     android:id="@+id/tvBusiness"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Job"
-                    android:layout_weight="1"
-                    android:layout_marginEnd="@dimen/_155sdp"
+                    android:layout_marginStart="@dimen/_8sdp"
                     android:layout_marginBottom="@dimen/_3sdp"/>
 
             </LinearLayout>
@@ -96,10 +84,11 @@
                 android:layout_marginStart="@dimen/_15sdp">
 
                 <com.temp.custom.CTextViewB
+                    android:id="@+id/tvDob1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Date Of Birth :-"
-                    android:layout_weight="1"
+                    android:visibility="gone"
                     android:layout_marginBottom="@dimen/_3sdp"/>
 
                 <com.temp.custom.CTextViewB
@@ -107,8 +96,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="22/05/1995"
-                    android:layout_weight="1"
-                    android:layout_marginEnd="@dimen/_125sdp"
+                    android:layout_marginStart="@dimen/_8sdp"
                     android:layout_marginBottom="@dimen/_3sdp"/>
 
             </LinearLayout>
@@ -120,19 +108,19 @@
                 android:layout_marginStart="@dimen/_15sdp">
 
                 <com.temp.custom.CTextViewB
+                    android:id="@+id/tvStudy1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Study :-"
-                    android:layout_weight="1"
+                    android:visibility="gone"
                     android:layout_marginBottom="@dimen/_3sdp"/>
 
                 <com.temp.custom.CTextViewB
                     android:id="@+id/tvStudy"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="12"
-                    android:layout_weight="1"
-                    android:layout_marginEnd="@dimen/_155sdp"
+                   android:layout_marginStart="@dimen/_8sdp"
                     android:layout_marginBottom="@dimen/_3sdp"/>
 
             </LinearLayout>
@@ -144,19 +132,19 @@
                 android:layout_marginStart="@dimen/_15sdp">
 
                 <com.temp.custom.CTextViewB
+                    android:id="@+id/tvNumber1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Mobile Number :-"
-                    android:layout_weight="1"
+                    android:visibility="gone"
                     android:layout_marginBottom="@dimen/_3sdp"/>
 
                 <com.temp.custom.CTextViewB
                     android:id="@+id/tvNumber"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="VillageList"
-                    android:layout_weight="1"
-                    android:layout_marginEnd="@dimen/_125sdp"
+                    android:layout_marginStart="@dimen/_8sdp"
                     android:layout_marginBottom="@dimen/_3sdp"/>
 
             </LinearLayout>

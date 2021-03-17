@@ -32,6 +32,7 @@ class AddressViewModel (application: Application) : BaseViewModel(application) {
     private lateinit var mContext: Context
     lateinit var addressAdepter: AddressAdepter
     lateinit var  addressData: AddressData
+    var address = mutableListOf<AddressData>()
     var id: AddMemberData? = null
 
 
@@ -57,6 +58,8 @@ class AddressViewModel (application: Application) : BaseViewModel(application) {
             override fun onItemClick(pos: Int, item: AddressData) {
 
 
+
+
             }
         })
 
@@ -70,7 +73,7 @@ class AddressViewModel (application: Application) : BaseViewModel(application) {
 
 
 
-    private fun getAddress() {
+    private fun getAddress1() {
         try {
 
             Debug.e("villageID",id?.id)
@@ -96,6 +99,29 @@ class AddressViewModel (application: Application) : BaseViewModel(application) {
             e.printStackTrace()
         }
 
+    }
+
+
+    fun getAddress() {
+        val docRef = db!!.collection(FirestoreTable.Address).whereEqualTo("mainmemberid",id?.id!!.trim())
+        docRef.addSnapshotListener { value, error ->
+            try {
+                if (error != null) {
+                    Debug.e("Listen failed.", error.message.toString())
+                    return@addSnapshotListener
+                }
+                if (value!!.isEmpty.not() || value != null) {
+                    val item = value.toObjects(AddressData::class.java)
+                    addressAdepter.clear()
+                    addressAdepter.addAll(item)
+                    if(item.size>0) {
+                        addressAdepter.notifyDataSetChanged()
+                    }
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
     }
 
 
