@@ -5,18 +5,16 @@ import android.app.Application
 import android.content.Context
 import android.view.View
 import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import com.temp.R
 import com.temp.apputils.Debug
 import com.temp.apputils.FirestoreTable
 import com.temp.apputils.Utils
 import com.temp.base.viewmodel.BaseViewModel
 import com.temp.databinding.ActivityAddMainDetailBinding
-import com.temp.databinding.ActivityAddMembarBinding
 import com.temp.interfaces.TopBarClickListener
 import com.temp.ui.address.datamodel.AddressData
-import com.temp.ui.addvillage.datamodel.AddVillage
 import com.temp.ui.mainmember.datamodel.AddMemberData
-import com.temp.ui.mainmember.datamodel.MainMemberData
 
 class AddMainDetailViewModel (application: Application) : BaseViewModel(application),
     AdapterView.OnItemSelectedListener {
@@ -44,6 +42,17 @@ class AddMainDetailViewModel (application: Application) : BaseViewModel(applicat
 
     private fun init() {
         id = (mContext as Activity).intent.extras?.getSerializable("id") as AddMemberData
+
+        val adapter = ArrayAdapter.createFromResource(
+                mContext,
+                R.array.items_spinner_add,
+                R.layout.style_spinner_layout
+        )
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_layout)
+        binder.spinnerAdd.adapter = adapter
+        binder.spinnerAdd.onItemSelectedListener = this
+
+
 
     }
 

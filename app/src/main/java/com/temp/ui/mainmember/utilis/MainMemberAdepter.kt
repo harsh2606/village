@@ -7,11 +7,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.temp.R
 import com.temp.databinding.ListMainmemberBinding
-import com.temp.databinding.ListVillageBinding
 import com.temp.ui.mainmember.datamodel.AddMemberData
-import com.temp.ui.mainmember.datamodel.MainMemberData
-import com.temp.ui.villagelist.datamodel.VilllageListData
-import com.temp.ui.villagelist.utilis.VillageListAdepter
 
 class MainMemberAdepter ()  : RecyclerView.Adapter<MainMemberAdepter.MyViewHolder>() {
 

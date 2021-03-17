@@ -2,11 +2,8 @@ package com.temp.ui.mainmember.viewmodel
 
 import android.app.Activity
 import android.app.Application
-import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import com.google.firebase.messaging.Constants
@@ -16,20 +13,12 @@ import com.temp.apputils.FirestoreTable
 import com.temp.apputils.Utils
 import com.temp.base.viewmodel.BaseViewModel
 import com.temp.databinding.ActivityMainMemberBinding
-import com.temp.databinding.ActivityVillageListBinding
 import com.temp.interfaces.TopBarClickListener
 import com.temp.ui.addmember.view.AddMembarActivity
-import com.temp.ui.address.datamodel.AddressData
 import com.temp.ui.address.view.AdressActivity
 import com.temp.ui.addvillage.datamodel.AddVillage
-import com.temp.ui.addvillage.view.AddVillageActivity
 import com.temp.ui.mainmember.datamodel.AddMemberData
-import com.temp.ui.mainmember.datamodel.MainMemberData
 import com.temp.ui.mainmember.utilis.MainMemberAdepter
-import com.temp.ui.mainmember.view.MainMemberActivity
-import com.temp.ui.villagelist.datamodel.VilllageListData
-import com.temp.ui.villagelist.utilis.VillageListAdepter
-import java.util.ArrayList
 
 class MainMemberViewModel (application: Application) : BaseViewModel(application) {
 

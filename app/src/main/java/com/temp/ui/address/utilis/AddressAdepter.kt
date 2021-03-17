@@ -8,10 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.temp.R
 import com.temp.databinding.ListAddressBinding
-import com.temp.databinding.ListMainmemberBinding
 import com.temp.ui.address.datamodel.AddressData
-import com.temp.ui.mainmember.datamodel.MainMemberData
-import com.temp.ui.mainmember.utilis.MainMemberAdepter
 
 class AddressAdepter ()  : RecyclerView.Adapter<AddressAdepter.MyViewHolder>() {
 

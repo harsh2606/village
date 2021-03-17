@@ -11,12 +11,9 @@ import com.temp.apputils.FirestoreTable
 import com.temp.apputils.Utils
 import com.temp.base.viewmodel.BaseViewModel
 import com.temp.databinding.ActivityAddMembarBinding
-import com.temp.databinding.ActivityAddVillageBinding
 import com.temp.interfaces.TopBarClickListener
 import com.temp.ui.addvillage.datamodel.AddVillage
 import com.temp.ui.mainmember.datamodel.AddMemberData
-import com.temp.ui.mainmember.datamodel.MainMemberData
-import java.util.*
 
 class AddMemberViewModel (application: Application) : BaseViewModel(application),
     AdapterView.OnItemSelectedListener {

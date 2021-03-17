@@ -95,7 +95,7 @@
             android:layout_gravity="center"
             android:background="@android:color/transparent"
             app:layout_collapseMode="pin"
-            app:layout_scrollFlags="scroll|enterAlways"
+            app:layout_scrollFlags="noScroll|enterAlways"
             app:popupTheme="@style/Theme.AppCompat.Light.DarkActionBar"
             app:theme="@style/ToolbarTheme">
 

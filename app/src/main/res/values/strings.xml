@@ -285,10 +285,15 @@
     <string name="employee_number_is_required">Employee Number is Required</string>
 
     <string-array name="items_spinner_add">
-        <item>Select Employer Service</item>
-        <item>Watchman</item>
-        <item>Cleaner</item>
-        <item>Plumber</item>
+        <item>Select your bloodgroup</item>
+        <item>A positive(A+)</item>
+        <item>A negative (A-)</item>
+        <item>B positive (B+)</item>
+        <item>B negative (B-)</item>
+        <item>O positive (O+)</item>
+        <item>O negative (O-)</item>
+        <item>AB positive (AB+)</item>
+        <item>AB negative (AB-)</item>
     </string-array>
 
     <string-array name="items_spinner_off">

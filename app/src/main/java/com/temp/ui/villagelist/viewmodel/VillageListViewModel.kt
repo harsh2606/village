@@ -19,7 +19,7 @@ import com.temp.interfaces.TopBarClickListener
 import com.temp.ui.addvillage.datamodel.AddVillage
 import com.temp.ui.addvillage.view.AddVillageActivity
 import com.temp.ui.mainmember.view.MainMemberActivity
-import com.temp.ui.villagelist.datamodel.VilllageListData
+//import com.temp.ui.villagelist.datamodel.VilllageListData
 import com.temp.ui.villagelist.utilis.VillageListAdepter
 import java.util.ArrayList
 

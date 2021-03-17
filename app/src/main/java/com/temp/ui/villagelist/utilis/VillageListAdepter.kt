@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.temp.R
 import com.temp.databinding.ListVillageBinding
 import com.temp.ui.addvillage.datamodel.AddVillage
-import com.temp.ui.villagelist.datamodel.VilllageListData
 import kotlinx.android.synthetic.main.list_village.view.*
 
 class VillageListAdepter ()  : RecyclerView.Adapter<VillageListAdepter.MyViewHolder>() {
