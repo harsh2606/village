@@ -71,9 +71,12 @@ class AddMainDetailViewModel (application: Application) : BaseViewModel(applicat
         fun onAddDetail(view: View) {
             try {
                 if (isValidate()) {
+                    addressData?.name = binder.edtName.text.toString()
                     addressData?.relation = binder.edtRelation.text.toString()
                     addressData?.business = binder.edtBusiness.text.toString()
                     addressData?.dob = binder.edtDob.text.toString()
+                    addressData?.study = binder.edtStudy.text.toString()
+                    addressData?.number = binder.edtNumber.text.toString()
                     addressData!!.mainmemberid = id!!.id
                     addDetail(addressData!!)
                 }

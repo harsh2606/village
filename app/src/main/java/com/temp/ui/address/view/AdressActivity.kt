@@ -25,4 +25,9 @@ class AdressActivity : BaseActivity() {
         viewModel = ViewModelProvider(activity).get(AddressViewModel::class.java)
         viewModel.setBinder(binding)
     }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.onResume()
+    }
 }

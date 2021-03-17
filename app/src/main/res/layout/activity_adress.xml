@@ -90,66 +90,32 @@
                 tools:context=".ui.address.view.AdressActivity">
 
 
-                <FrameLayout
+          <com.temp.custom.CTextView
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="Address"
+              android:padding="@dimen/_10sdp"
+              android:background="@color/darkLightblue"/>
+
+                <com.temp.custom.CTextView
+                    android:id="@+id/tvAddress"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:text="Address"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:padding="@dimen/_25sdp"
+                    android:background="@drawable/border_rounded"/>
 
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/cvFullSearch"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="top"
-                        android:layout_marginStart="@dimen/_15sdp"
-                        android:layout_marginTop="@dimen/_5sdp"
-                        android:layout_marginEnd="@dimen/_15sdp"
-                        android:layout_marginBottom="@dimen/_3sdp"
-                        android:visibility="gone"
-                        app:cardCornerRadius="@dimen/_5sdp">
+                <com.temp.custom.CTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Members"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:padding="@dimen/_10sdp"
+                    android:background="@color/darkLightblue"/>
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <androidx.appcompat.widget.AppCompatImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginStart="@dimen/_8sdp"
-                                android:contentDescription="@null"
-                                android:src="@drawable/ic_group_search" />
-
-                            <com.temp.custom.CEditTextView
-                                android:id="@+id/edtSearch"
-                                style="@style/txt_000_14"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/_5sdp"
-                                android:layout_weight="1"
-                                android:background="@null"
-                                android:hint="Please choose your office"
-                                android:paddingStart="@dimen/_5sdp"
-                                android:paddingTop="@dimen/_8sdp"
-                                android:paddingBottom="@dimen/_8sdp"
-                                android:singleLine="true" />
-
-                            <com.temp.custom.CTextView
-                                android:id="@+id/tvCancel"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginStart="@dimen/_5sdp"
-                                android:layout_marginEnd="@dimen/_10sdp"
-                                android:gravity="center"
-                                android:singleLine="true"
-                                android:text="Cancel"
-                                android:visibility="gone" />
-
-                        </LinearLayout>
-
-                    </androidx.cardview.widget.CardView>
-
-                </FrameLayout>
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvAddressList"
                     android:layout_width="match_parent"

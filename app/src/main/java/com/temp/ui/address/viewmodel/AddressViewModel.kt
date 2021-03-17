@@ -22,6 +22,7 @@ import com.temp.ui.addmember.view.AddMembarActivity
 import com.temp.ui.address.datamodel.AddressData
 import com.temp.ui.address.utilis.AddressAdepter
 import com.temp.ui.address.view.AdressActivity
+import com.temp.ui.mainmember.datamodel.AddMemberData
 import com.temp.ui.mainmember.datamodel.MainMemberData
 import com.temp.ui.mainmember.utilis.MainMemberAdepter
 import com.temp.ui.villagelist.datamodel.VilllageListData
@@ -31,7 +32,7 @@ class AddressViewModel (application: Application) : BaseViewModel(application) {
     private lateinit var mContext: Context
     lateinit var addressAdepter: AddressAdepter
     lateinit var  addressData: AddressData
-    var id: MainMemberData? = null
+    var id: AddMemberData? = null
 
 
     fun setBinder(binder:ActivityAdressBinding) {
@@ -47,8 +48,8 @@ class AddressViewModel (application: Application) : BaseViewModel(application) {
     }
 
     private fun init() {
-        id = (mContext as Activity).intent.extras?.getSerializable("id") as MainMemberData?
-//         binder.tvAddress.setText(id!!.address)
+        id = (mContext as Activity).intent.extras?.getSerializable("id") as AddMemberData?
+         binder.tvAddress.setText(id!!.address)
 
         addressAdepter = AddressAdepter(mContext)
         binder.rvAddressList.adapter =addressAdepter
@@ -59,8 +60,13 @@ class AddressViewModel (application: Application) : BaseViewModel(application) {
             }
         })
 
+
+    }
+
+    fun onResume() {
         getAddress()
     }
+
 
 
 
@@ -69,35 +75,6 @@ class AddressViewModel (application: Application) : BaseViewModel(application) {
 
             Debug.e("villageID",id?.id)
             showDialog("",mContext as Activity)
-//            var query = db!!.collection("address").whereEqualTo("mainmemberid",id?.id!!.trim())
-//
-//
-//            query.get().addOnSuccessListener { result ->
-//
-//                if (result != null && result.isEmpty.not()) {
-//                    val item = result.toObjects(AddressData::class.java)
-////                    addressAdepter.addAll(item)
-//                    Debug.e("Get All Data Successfully"+item.toString())
-//                }
-//                dismissDialog()
-//            }.addOnFailureListener {
-//                it.printStackTrace()
-//                dismissDialog()
-//            }.addOnCompleteListener {
-////                if (it.result != null && it.result.isEmpty.not()) {
-////                    val item = it.result.toObjects(AddressData::class.java)
-////                    addressAdepter = AddressAdepter(mContext)
-////                    addressAdepter.addAll(item)
-////                    binder.rvAddressList.adapter =  addressAdepter
-////                    addressAdepter.setEventListener(object : AddressAdepter.EventListener {
-////
-////                        override fun onItemClick(pos: Int, item: AddressData) {
-////                        }
-////                    })
-////                    Debug.e("Get All Data Successfully")
-////                }
-//                dismissDialog()
-//            }
 
 
             db!!.collection(FirestoreTable.Address).whereEqualTo("mainmemberid",id?.id!!.trim()).get()

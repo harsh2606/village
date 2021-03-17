@@ -60,6 +60,10 @@ class AddressAdepter ()  : RecyclerView.Adapter<AddressAdepter.MyViewHolder>() {
 
             holder.itemBinding.tvRName.text = item.relation
             holder.itemBinding.tvBusiness.text = item.business
+            holder.itemBinding.tvDob.text = item.dob
+            holder.itemBinding.tvStudy.text = item.study
+            holder.itemBinding.tvName.text = item.name
+            holder.itemBinding.tvNumber.text = item.number
 
         } catch (e: java.lang.Exception) {
             e.printStackTrace()
