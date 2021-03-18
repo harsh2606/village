@@ -53,6 +53,17 @@ class AddMainDetailViewModel (application: Application) : BaseViewModel(applicat
         binder.spinnerAdd.onItemSelectedListener = this
 
 
+//        val adapter1 = ArrayAdapter.createFromResource(
+//                mContext,
+//                R.array.items_spinner_rel,
+//                R.layout.style_spinner_layout
+//        )
+//        adapter1.setDropDownViewResource(R.layout.spinner_dropdown_layout)
+//        binder.spinnerAdd1.adapter = adapter
+//        binder.spinnerAdd1.onItemSelectedListener = this
+
+
+
 
     }
 
@@ -129,6 +140,14 @@ class AddMainDetailViewModel (application: Application) : BaseViewModel(applicat
             showToast((mContext as Activity).getString(R.string.add_village))
             return false
         }
+        else if (binder.spinnerAdd.selectedItemPosition == 0) {
+            showToast((mContext as Activity).getString(R.string.select_blood))
+            return false
+        }
+//        else if (binder.spinnerAdd.selectedItemPosition == 0) {
+//            showToast((mContext as Activity).getString(R.string.select_rel))
+//            return false
+//        }
 
 
         return true

@@ -294,6 +294,25 @@
         <item>O negative (O-)</item>
         <item>AB positive (AB+)</item>
         <item>AB negative (AB-)</item>
+        <item>Not sure</item>
+    </string-array>
+
+    <string name="select_blood">Select Valid BloodGroup</string>
+    <string name="select_rel">Select Valid Relation</string>
+
+    <string-array name="items_spinner_rel">
+        <item>Select your relation</item>
+        <item>Brother</item>
+        <item>Sister</item>
+        <item>Wife</item>
+        <item>Son</item>
+        <item>Daughter</item>
+        <item>Grand Son</item>
+        <item>Grand Daughter</item>
+        <item>Sister-in-law</item>
+        <item>Nephew</item>
+        <item>Niece</item>
+        <item>Niece-in-law</item>
     </string-array>
 
     <string-array name="items_spinner_off">
