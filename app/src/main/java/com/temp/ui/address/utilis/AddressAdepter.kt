@@ -101,9 +101,7 @@ class AddressAdepter ()  : RecyclerView.Adapter<AddressAdepter.MyViewHolder>() {
 //                holder.itemBinding.lnBlood.visibility = View.GONE
 //            }
 
-//            if(data.get(position).bloodgroup.getSelectedItem() !=null ) {
-//                name = spinnerName.getSelectedItem().toString();
-//            }
+
 
 
             holder.itemBinding.tvRName.text = item.relation

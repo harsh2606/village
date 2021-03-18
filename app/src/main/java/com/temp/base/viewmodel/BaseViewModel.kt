@@ -34,6 +34,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.installations.Utils
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.karumi.dexter.Dexter
@@ -43,6 +44,7 @@ import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import com.mikepenz.materialdrawer.Drawer
 import com.mikepenz.materialdrawer.DrawerBuilder
+import com.temp.apputils.Utils.loadImage
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -171,12 +173,8 @@ open class BaseViewModel(application: Application) : AppViewModel(application) {
 //                        )
                         customSideMenuBinding.txtFullName.text = auth?.currentUser?.displayName
                         customSideMenuBinding.txtUserName.text = auth?.currentUser?.email
-//                        Utils.loadImage(
-//                            customSideMenuBinding.imgProfile,
-//                            userProfileData.result!!.profilePicUrl!!,
-//                            mContext,
-//                            R.color.lgray
-//                        )
+                        com.temp.apputils.Utils.loadImage(customSideMenuBinding.imgProfile, auth?.currentUser?.photoUrl.toString()!!, mContext, R.drawable.ic_group_user
+                        )
                     } catch (e: Exception) {
                         e.printStackTrace()
                     }

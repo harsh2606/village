@@ -36,6 +36,7 @@ class AddressViewModel (application: Application) : BaseViewModel(application) {
         this.binder.topbar.topBarClickListener = SlideMenuClickListener()
         this.binder.topbar.isTextShow = true
         this.binder.topbar.isBackShow = true
+        this.binder.topbar.tvTitleText.text = (mContext as Activity).getString(R.string.mainmember_list)
        addressData=AddressData()
         init()
     }
@@ -43,6 +44,7 @@ class AddressViewModel (application: Application) : BaseViewModel(application) {
     private fun init() {
         id = (mContext as Activity).intent.extras?.getSerializable("id") as AddMemberData?
          binder.tvAddress.setText(id!!.address)
+        this.binder.topbar.tvTitleText.setText(id!!.name)
 
         addressAdepter = AddressAdepter(mContext)
         binder.rvAddressList.adapter =addressAdepter

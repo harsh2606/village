@@ -36,6 +36,7 @@ class MainMemberViewModel (application: Application) : BaseViewModel(application
         this.binder.topBar.isTextShow = true
         this.binder.topBar.isBackShow = true
         this.binder.topBar.tvTitleText.text = (mContext as Activity).getString(R.string.mainmember_list)
+
         init()
     }
 
@@ -43,7 +44,7 @@ class MainMemberViewModel (application: Application) : BaseViewModel(application
 
 
         id = (mContext as Activity).intent.extras?.getSerializable("id") as AddVillage
-
+        this.binder.topBar.tvTitleText.setText(id!!.village)
         mainMemberAdepter = MainMemberAdepter(mContext)
         binder.rvMainMemberList.adapter = mainMemberAdepter
       mainMemberAdepter.setEventListener(object : MainMemberAdepter.EventListener {

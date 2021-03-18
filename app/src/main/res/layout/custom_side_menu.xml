@@ -30,13 +30,15 @@
                 android:gravity="bottom"
                 android:orientation="horizontal">
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:layout_marginBottom="@dimen/_3sdp"
+                <com.mikhaellopez.circularimageview.CircularImageView
+                    android:id="@+id/imgProfile"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_gravity="center_vertical"
                     android:contentDescription="@null"
-                    android:src="@drawable/ic_group_user" />
+                    android:src="@drawable/ic_group_user"
+                    app:civ_border_color="@color/main_bg"
+                    app:civ_border_width="@dimen/_1sdp" />
 
 
                 <LinearLayout

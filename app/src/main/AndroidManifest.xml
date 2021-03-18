@@ -25,12 +25,36 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".ui.addmaindetail.view.AddMainDetailActivity"></activity>
-        <activity android:name=".ui.addmember.view.AddMembarActivity" />
-        <activity android:name=".ui.addvillage.view.AddVillageActivity" />
-        <activity android:name=".ui.address.view.AdressActivity" />
-        <activity android:name=".ui.mainmember.view.MainMemberActivity" />
-        <activity android:name=".ui.villagelist.view.VillageListActivity" />
+        <activity android:name=".ui.addmaindetail.view.AddMainDetailActivity"
+            android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize"
+            android:label="@string/app_name"
+            android:windowSoftInputMode="stateHidden|stateAlwaysHidden"/>
+
+
+        <activity android:name=".ui.addmember.view.AddMembarActivity"
+            android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize"
+            android:label="@string/app_name"
+            android:windowSoftInputMode="stateHidden|stateAlwaysHidden"/>
+
+        <activity android:name=".ui.addvillage.view.AddVillageActivity"
+            android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize"
+            android:label="@string/app_name"
+            android:windowSoftInputMode="stateHidden|stateAlwaysHidden" />
+
+        <activity android:name=".ui.address.view.AdressActivity"
+            android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize"
+            android:label="@string/app_name"
+            android:windowSoftInputMode="stateHidden|stateAlwaysHidden"/>
+
+        <activity android:name=".ui.mainmember.view.MainMemberActivity"
+            android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize"
+            android:label="@string/app_name"
+            android:windowSoftInputMode="stateHidden|stateAlwaysHidden"/>
+
+        <activity android:name=".ui.villagelist.view.VillageListActivity"
+            android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize"
+            android:label="@string/app_name"
+            android:windowSoftInputMode="stateHidden|stateAlwaysHidden"/>
         <activity android:name=".ui.villagelist.VillageListActivity" />
 
         <provider

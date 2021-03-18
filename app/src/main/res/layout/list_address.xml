@@ -159,7 +159,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-
                 android:layout_marginStart="@dimen/_15sdp">
 
                 <com.temp.custom.CTextViewB
@@ -172,7 +171,7 @@
                     android:id="@+id/tvBlood"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Blood"
+                    android:text="ab"
                     android:layout_marginStart="@dimen/_8sdp"
                     android:layout_marginBottom="@dimen/_3sdp"/>
 
