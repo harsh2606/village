@@ -8,5 +8,6 @@ class AddressData {
     var dob: String? = null
     var study: String? = null
     var number: String? = null
+    var bloodgroup: String? = null
     var mainmemberid: String? = null
 }

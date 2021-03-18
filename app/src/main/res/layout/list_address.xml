@@ -27,12 +27,15 @@
                     android:layout_marginStart="@dimen/_8sdp"
                     android:layout_gravity="center"
                     android:gravity="center"
+                    android:visibility="gone"
                     android:layout_marginBottom="@dimen/_3sdp"/>
 
             <LinearLayout
+                android:id="@+id/lnRNames"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:visibility="gone"
                 android:layout_marginStart="@dimen/_15sdp">
 
         <com.temp.custom.CTextViewB
@@ -40,7 +43,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Relationshn :-"
-            android:visibility="gone"
             android:layout_marginBottom="@dimen/_3sdp"/>
 
                 <com.temp.custom.CTextViewB
@@ -54,9 +56,11 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/lnBusiness1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:visibility="gone"
                 android:layout_marginStart="@dimen/_15sdp">
 
                 <com.temp.custom.CTextViewB
@@ -64,7 +68,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Business :-"
-                    android:visibility="gone"
                     android:layout_marginBottom="@dimen/_3sdp"/>
 
                 <com.temp.custom.CTextViewB
@@ -78,9 +81,11 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/lnDob1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:visibility="gone"
                 android:layout_marginStart="@dimen/_15sdp">
 
                 <com.temp.custom.CTextViewB
@@ -88,7 +93,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Date Of Birth :-"
-                    android:visibility="gone"
                     android:layout_marginBottom="@dimen/_3sdp"/>
 
                 <com.temp.custom.CTextViewB
@@ -102,17 +106,17 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/lnStudy1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:visibility="gone"
                 android:layout_marginStart="@dimen/_15sdp">
 
                 <com.temp.custom.CTextViewB
-                    android:id="@+id/tvStudy1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Study :-"
-                    android:visibility="gone"
                     android:layout_marginBottom="@dimen/_3sdp"/>
 
                 <com.temp.custom.CTextViewB
@@ -126,9 +130,11 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/lnNumber1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:visibility="gone"
                 android:layout_marginStart="@dimen/_15sdp">
 
                 <com.temp.custom.CTextViewB
@@ -136,14 +142,37 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Mobile Number :-"
-                    android:visibility="gone"
                     android:layout_marginBottom="@dimen/_3sdp"/>
 
                 <com.temp.custom.CTextViewB
                     android:id="@+id/tvNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="VillageList"
+                    android:text="26206"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginBottom="@dimen/_3sdp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lnBlood"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+
+                android:layout_marginStart="@dimen/_15sdp">
+
+                <com.temp.custom.CTextViewB
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Blood Group :-"
+                    android:layout_marginBottom="@dimen/_3sdp"/>
+
+                <com.temp.custom.CTextViewB
+                    android:id="@+id/tvBlood"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Blood"
                     android:layout_marginStart="@dimen/_8sdp"
                     android:layout_marginBottom="@dimen/_3sdp"/>
 

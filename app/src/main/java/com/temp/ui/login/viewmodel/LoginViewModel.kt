@@ -42,16 +42,15 @@ class LoginViewModel(application: Application) : BaseViewModel(application) {
     }
 
     private fun init() {
-        if (Debug.DEBUG) {
-//            binder.edtUserEmail.setText("")
-//            binder.edtPassword.setText("")
-        }
+
 
         initGoogle()
+//        userData = UserData()
+        signOutGoogle()
+        revokeAccess()
 
     }
 
-    // Google
     private fun initGoogle() {
 //        firebaseAuth = FirebaseAuth.getInstance()
         //this is where we start the Auth state Listener to listen for whether the user is signed in or not
@@ -72,11 +71,32 @@ class LoginViewModel(application: Application) : BaseViewModel(application) {
             }
         }
 
-//        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-//            .requestIdToken((mContext as Activity).getString(R.string.default_web_client_id))//you can also use R.string.default_web_client_id
-//            .requestEmail()
-//            .build()
-//        mGoogleSignInClient = GoogleSignIn.getClient(mContext as Activity, gso)
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken((mContext as Activity).getString(R.string.default_web_client_id))//you can also use R.string.default_web_client_id
+                .requestEmail()
+                .build()
+        mGoogleSignInClient = GoogleSignIn.getClient(mContext as Activity, gso)
+    }
+
+    private fun signOutGoogle() {
+        try {
+            mGoogleSignInClient.signOut()
+                    .addOnCompleteListener(mContext as Activity) {
+                        // signed out
+                    }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    private fun revokeAccess() {
+        try {
+            mGoogleSignInClient.revokeAccess()
+                    .addOnCompleteListener(mContext as Activity) {
+                        // ...
+                    }
+        } catch (e: Exception) {
+        }
     }
 
 

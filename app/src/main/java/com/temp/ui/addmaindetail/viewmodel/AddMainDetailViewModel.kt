@@ -86,6 +86,7 @@ class AddMainDetailViewModel (application: Application) : BaseViewModel(applicat
                     addressData?.dob = binder.edtDob.text.toString()
                     addressData?.study = binder.edtStudy.text.toString()
                     addressData?.number = binder.edtNumber.text.toString()
+                    addressData?.bloodgroup = binder.spinnerAdd.selectedItem.toString()
                     addressData!!.mainmemberid = id!!.id
                     addDetail(addressData!!)
                 }

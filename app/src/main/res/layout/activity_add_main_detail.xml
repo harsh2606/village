@@ -183,25 +183,7 @@
 
                 </LinearLayout>
 
-                <com.temp.custom.CTextViewB
-                    style="@style/txt_main_bg_14"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="@dimen/_8sdp"
-                    android:paddingBottom="@dimen/_8sdp"
-                    android:singleLine="true"
-                    android:text="Add Number" />
 
-                <com.temp.custom.CEditTextView
-                    android:id="@+id/edtNumber2"
-                    style="@style/txt_main_bg_14"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/ll_add_img_bg"
-                    android:hint="Enter Business"
-                    android:padding="@dimen/_10sdp"
-                    android:singleLine="true"
-                    />
             </LinearLayout>
 
             </androidx.core.widget.NestedScrollView>

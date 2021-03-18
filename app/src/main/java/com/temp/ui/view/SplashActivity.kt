@@ -36,7 +36,7 @@ class SplashActivity : BaseActivity() {
                 startActivity(i)
                 finish()
             }  else {
-                val i = Intent(activity,  HomeActivity::class.java)
+                val i = Intent(activity,  LoginActivity::class.java)
                 i.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(i)
                 finish()

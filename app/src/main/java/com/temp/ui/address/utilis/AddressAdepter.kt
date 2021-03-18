@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.temp.R
 import com.temp.databinding.ListAddressBinding
 import com.temp.ui.address.datamodel.AddressData
+import java.lang.Exception
 
 class AddressAdepter ()  : RecyclerView.Adapter<AddressAdepter.MyViewHolder>() {
 
@@ -59,9 +60,9 @@ class AddressAdepter ()  : RecyclerView.Adapter<AddressAdepter.MyViewHolder>() {
 
 
             if(data.get(position).relation!!.isNullOrEmpty().not()){
-                holder.itemBinding.tvRNames.visibility = View.VISIBLE
+                holder.itemBinding.lnRNames.visibility = View.VISIBLE
             }else{
-                holder.itemBinding.tvRNames.visibility = View.GONE
+                holder.itemBinding.lnRNames.visibility = View.GONE
             }
 
             if(data.get(position).name!!.isNullOrEmpty().not()){
@@ -71,44 +72,39 @@ class AddressAdepter ()  : RecyclerView.Adapter<AddressAdepter.MyViewHolder>() {
             }
 
             if(data.get(position).business!!.isNullOrEmpty().not()){
-                holder.itemBinding.tvBusiness1.visibility = View.VISIBLE
+                holder.itemBinding.lnBusiness1.visibility = View.VISIBLE
             }else{
-                holder.itemBinding.tvBusiness1.visibility = View.GONE
+                holder.itemBinding.lnBusiness1.visibility = View.GONE
             }
 
             if(data.get(position).dob!!.isNullOrEmpty().not()){
-                holder.itemBinding.tvDob1.visibility = View.VISIBLE
+                holder.itemBinding.lnDob1.visibility = View.VISIBLE
             }else{
-                holder.itemBinding.tvDob1.visibility = View.GONE
+                holder.itemBinding.lnDob1.visibility = View.GONE
             }
 
             if(data.get(position).study!!.isNullOrEmpty().not()){
-                holder.itemBinding.tvStudy1.visibility = View.VISIBLE
+                holder.itemBinding.lnStudy1.visibility = View.VISIBLE
             }else{
-                holder.itemBinding.tvStudy1.visibility = View.GONE
+                holder.itemBinding.lnStudy1.visibility = View.GONE
             }
 
             if(data.get(position).number!!.isNullOrEmpty().not()){
-                holder.itemBinding.tvNumber1.visibility = View.VISIBLE
+                holder.itemBinding.lnNumber1.visibility = View.VISIBLE
             }else{
-                holder.itemBinding.tvNumber1.visibility = View.GONE
+                holder.itemBinding.lnNumber1.visibility = View.GONE
             }
 
-            if (data.isNullOrEmpty().not()) {
+//            if(data.get(position).bloodgroup!!.isNullOrEmpty().not()){
+//                holder.itemBinding.lnBlood.visibility = View.VISIBLE
+//            }else{
+//                holder.itemBinding.lnBlood.visibility = View.GONE
+//            }
 
-                holder.itemBinding.tvBusiness.visibility = View.VISIBLE
-                holder.itemBinding.tvDob.visibility = View.VISIBLE
-                holder.itemBinding.tvStudy.visibility = View.VISIBLE
-                holder.itemBinding.tvName.visibility = View.VISIBLE
-                holder.itemBinding.tvNumber.visibility = View.VISIBLE
-            } else {
+//            if(data.get(position).bloodgroup.getSelectedItem() !=null ) {
+//                name = spinnerName.getSelectedItem().toString();
+//            }
 
-                holder.itemBinding.tvBusiness.visibility = View.GONE
-                holder.itemBinding.tvDob.visibility = View.GONE
-                holder.itemBinding.tvStudy.visibility = View.GONE
-                holder.itemBinding.tvName.visibility = View.GONE
-                holder.itemBinding.tvNumber.visibility = View.GONE
-            }
 
             holder.itemBinding.tvRName.text = item.relation
             holder.itemBinding.tvBusiness.text = item.business
@@ -116,8 +112,9 @@ class AddressAdepter ()  : RecyclerView.Adapter<AddressAdepter.MyViewHolder>() {
             holder.itemBinding.tvStudy.text = item.study
             holder.itemBinding.tvName.text = item.name
             holder.itemBinding.tvNumber.text = item.number
+            holder.itemBinding.tvBlood.text = item.bloodgroup
 
-        } catch (e: java.lang.Exception) {
+        } catch (e: Exception) {
             e.printStackTrace()
         }
 
