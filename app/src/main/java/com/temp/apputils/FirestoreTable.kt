@@ -6,6 +6,7 @@ object FirestoreTable {
     const val VillageList = "villagelist"
     const val MainMember = "mainmember"
     const val Address = "address"
+    const val USERS = "users"
 
 
 

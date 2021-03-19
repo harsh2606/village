@@ -18,9 +18,14 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.messaging.FirebaseMessaging
+import com.google.gson.Gson
+import com.temp.apputils.FirestoreTable
+import com.temp.ui.login.datamodel.UserData
 
 class LoginViewModel(application: Application) : BaseViewModel(application) {
 
@@ -31,6 +36,7 @@ class LoginViewModel(application: Application) : BaseViewModel(application) {
     private val TAG = "LoginViewModel"
     private var authStateListener: FirebaseAuth.AuthStateListener? = null
 //    private var firebaseAuth: FirebaseAuth? = null
+   var userData: UserData? = null
 
 
     fun setBinder(binder: ActivityLoginBinding) {
@@ -45,7 +51,7 @@ class LoginViewModel(application: Application) : BaseViewModel(application) {
 
 
         initGoogle()
-//        userData = UserData()
+        userData = UserData()
         signOutGoogle()
         revokeAccess()
 
@@ -124,7 +130,7 @@ class LoginViewModel(application: Application) : BaseViewModel(application) {
                 completedTask.getResult(ApiException::class.java)
 
             // Signed in successfully, show authenticated UI.
-            firebaseAuthWithGoogle(account.idToken!!)
+            firebaseAuthWithGoogle(account)
 //            updateUI(account)
 //            getGoogleProfile(account)
         } catch (e: ApiException) {
@@ -135,34 +141,137 @@ class LoginViewModel(application: Application) : BaseViewModel(application) {
         }
     }
 
-    private fun firebaseAuthWithGoogle(idToken: String) {
-        val credential = GoogleAuthProvider.getCredential(idToken, null)
+    private fun firebaseAuthWithGoogle(account: GoogleSignInAccount) {
+        showDialog("", (mContext as Activity))
+        val credential = GoogleAuthProvider.getCredential(account.idToken, null)
         auth!!.signInWithCredential(credential)
-            .addOnCompleteListener(mContext as Activity) { task ->
-                if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    Debug.e("firebaseAuthWithGoogle", "signInWithCredential:success")
-                    val user = auth!!.currentUser
-                    Utils.setPref(
-                        mContext,
-                        Constant.LOGIN_INFO,
-                        user.toString()
-                    )
-                    val intent = Intent(mContext, HomeActivity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    (mContext as Activity).startActivity(intent)
-                    (mContext as Activity).finish()
-                    Debug.e(TAG, user.toString())
-                } else {
-                    // If sign in fails, display a message to the user.
-                    Debug.e(
-                        "firebaseAuthWithGoogle",
-                        "signInWithCredential:failure " + task.exception!!.localizedMessage
-                    )
+                .addOnCompleteListener(mContext as Activity) { task ->
+                    if (task.isSuccessful) {
+                        // Sign in success, update UI with the signed-in user's information
+                        Debug.e("firebaseAuthWithGoogle", "signInWithCredential:success")
+                        val user = auth!!.currentUser
+//                    Utils.setPref(
+//                        mContext,
+//                        Constant.LOGIN_INFO,
+//                        user.toString()
+//                    )
+                        FirebaseMessaging.getInstance().token
+                                .addOnCompleteListener(OnCompleteListener { task ->
+                                    if (!task.isSuccessful) {
+                                        return@OnCompleteListener
+                                    }
+//                          Get new Instance ID token
+                                    val token = task.result
+                                    getUserList(account,token)
+                                    Debug.e("fcm_token", token)
+                                })
+                        Debug.e(TAG, user.toString())
+                    } else {
+                        dismissDialog()
+                        // If sign in fails, display a message to the user.
+                        Debug.e(
+                                "firebaseAuthWithGoogle",
+                                "signInWithCredential:failure " + task.exception!!.localizedMessage
+                        )
+                    }
+
+                    // ...
                 }
 
-                // ...
+    }
+    private fun getUserList(account: GoogleSignInAccount, token: String) {
+        try {
+            val documentID = auth!!.currentUser!!.uid
+            var query = db!!.collection(FirestoreTable.USERS).document(auth!!.currentUser!!.uid)
+            query.get().addOnSuccessListener { result ->
+                dismissDialog()
+                if (result.exists()) {
+                    if (result != null) {
+                        val userData: UserData? = result.toObject(UserData::class.java)
+                        val gson = Gson()
+                        val user = gson.toJson(userData)
+                        Utils.setPref(
+                                mContext,
+                                Constant.LOGIN_INFO,
+                                user.toString()
+                        )
+                        if (userData?.isAdmin!!) {
+                            moveNext(HomeActivity::class.java)
+                        }
+//                        if (userData?.isAdmin!!) {
+//                            if (userData.shopID.isNullOrEmpty()) {
+//                                moveNext(SelectShopActivity::class.java)
+//                            } else if (!userData?.isApproved!!) {
+//                                moveNext(VerificationActivity::class.java)
+//                            } else {
+//                                moveNext(HomeActivity::class.java)
+//                            }
+//                        } else {
+//                            if (!userData?.isApproved!!) {
+//                                moveNext(VerificationActivity::class.java)
+//                            } else {
+//                                moveNext(HomeActivity::class.java)
+//                            }
+                        }
+
+                        Debug.e("UID Exist")
+                    }
+                 if (userData?.isAdmin!!){
+                    userData?.id = auth!!.currentUser!!.uid
+                    userData?.firstName = account.givenName
+                    userData?.lastName = account.familyName
+                    userData?.email = account.email
+                    userData?.socialID = account.id
+                    userData?.type = "google"
+                    userData?.isAdmin = false
+
+                    addUser(userData!!)
+                    Debug.e("UID Doesn't Exist")
+                }
+            }.addOnFailureListener {
+                it.printStackTrace()
+                dismissDialog()
+            }.addOnCompleteListener {
+                dismissDialog()
             }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+    }
+
+    fun addUser(userData: UserData) {
+        db!!.collection(FirestoreTable.USERS)
+                .document(auth!!.currentUser!!.uid.toString())
+                .set(userData)
+                .addOnSuccessListener {
+                    val gson = Gson()
+                    val user = gson.toJson(userData)
+                    Utils.setPref(
+                            mContext,
+                            Constant.LOGIN_INFO,
+                            user.toString()
+                    )
+                    if (userData?.isAdmin!!) {
+                        moveNext(HomeActivity::class.java)
+                    } else {
+                        moveNext(HomeActivity::class.java)
+                    }
+
+                    Debug.e(TAG, "User Added Successfully")
+                    //getCustomers(catalogue)
+                }
+                .addOnFailureListener { exception ->
+                    Debug.e(TAG, "User Added Fail")
+                    exception.printStackTrace()
+                }
+    }
+
+    fun moveNext(activity: Class<*>?) {
+        val intent = Intent(mContext, activity)
+        intent.flags =
+                Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+        (mContext as Activity).startActivity(intent)
     }
 
 
